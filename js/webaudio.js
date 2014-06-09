@@ -131,6 +131,9 @@ javascriptNode.onaudioprocess = function() {
     // create the meters
     ctx.fillRect(0,130-average,25,130);
     // ctx.fillRect(30,130-average2,25,130);
+    if (average > 80) {
+        animationStart();
+    }
 }
 
 function getAverageVolume(array) {
@@ -152,9 +155,10 @@ function getAverageVolume(array) {
 var animation = document.getElementById("animation");
 var c = animation.getContext("2d");
 var images = new Array();
-var fps = 24;//フレームレート
-var frame = 0;
-var onceFlg = true;
+var animations = {}
+animations.fps = 24;//フレームレート
+animations.frame = 0;
+animations.onceFlg = true;
 
 for (var i = 1; i <= 520; i++) { //iの最大数はサーバからクエリとかでもらう?
     images[i] = new Image();
@@ -166,8 +170,10 @@ images['520'].onload = function() {
 }
 
 function animationStart () {
-    var interval = 1/fps*1000;
+    clearInterval(animation);
+    var interval = 1/animations.fps*1000;
     animation = setInterval(intervalEvent, interval);
+    animations.frame = Math.floor(Math.random() * 521);
 }
 
 function animationStop () {
@@ -175,11 +181,13 @@ function animationStop () {
 }
 
 function intervalEvent(){
-    frame++;
-    c.drawImage(images[frame], 0, 0);
+    animations.frame++;
+    c.drawImage(images[animations.frame], 0, 0);
 
-    if (frame>=520) {
-        if (onceFlg) clearInterval( animation );
-        frame = 0;
+    if (animations.frame>=520) {
+        if (animations.onceFlg) {
+            clearInterval(animation);
+        }
+        animations.frame = 0;
     };
 }
