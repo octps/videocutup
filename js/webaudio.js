@@ -6,8 +6,11 @@ if (! window.AudioContext) {
 }
 
 var context = new AudioContext();
+var context2 = new AudioContext();
 var audioBuffer;
+var audioBuffer2;
 var sourceNode;
+var sourceNode2;
 
 // setup a analyzer
 var splitter;
@@ -29,14 +32,19 @@ gradient.addColorStop(0,'#ffffff');
 // load the sound
 setupAudioNodes();
 loadSound("/sounds/sample.mp3");
+loadSound2("/sounds/sample2.mp3");
 
 function init() {
     var context = new webkitAudioContext();
+    var context2 = new webkitAudioContext();
     var audioBuffer;
+    var audioBuffer2;
     var sourceNode;
+    var sourceNode2;
 
     setupAudioNodes();
     loadSound("/sounds/sample.mp3");
+    loadSound2("/sounds/sample.mp3");
 }
 
 function setupAudioNodes() {
@@ -52,6 +60,7 @@ function setupAudioNodes() {
     // analyser2.fftSize = 1024;
 
     sourceNode = context.createBufferSource();
+    sourceNode2 = context2.createBufferSource();
     splitter = context.createChannelSplitter();
 
     sourceNode.connect(splitter);
@@ -62,6 +71,7 @@ function setupAudioNodes() {
     analyser.connect(javascriptNode);
 
     sourceNode.connect(context.destination);
+    sourceNode2.connect(context2.destination);
 }
 
 // load the specified sound
@@ -83,8 +93,30 @@ function loadSound(url) {
     request.send();
 }
 
+function loadSound2(url) {
+    var request = new XMLHttpRequest();
+    request.open('GET', url, true);
+    request.responseType = 'arraybuffer';
+
+    // When loaded decode the data
+    request.onload = function() {
+
+        // decode the data
+        context2.decodeAudioData(request.response, function(buffer) {
+            // when the audio is decoded play the sound
+            $("body").append("<input id='play2' type='button' onclick='playSound2()' value='play2'>");
+           setSound2(buffer);
+        }, onError);
+    }
+    request.send();
+}
+
 function setSound(buffer) {
     sourceNode.buffer = buffer;
+}
+
+function setSound2(buffer) {
+    sourceNode2.buffer = buffer;
 }
 
 function playSound() {
@@ -94,10 +126,25 @@ function playSound() {
     animationStart();
 }
 
+function playSound2() {
+    sourceNode2.noteOn(0);
+    $("#play2").remove();
+    $("body").append("<input id='stop2' type='button' onclick='stop2()' value='stop2'>");
+    animationStart();
+}
+
 function stop() {
     sourceNode.noteOff(0);
     $("#play").remove();
     $("#stop").remove();
+    init();
+    animationStop();
+}
+
+function stop2() {
+    sourceNode2.noteOff(0);
+    $("#play2").remove();
+    $("#stop2").remove();
     init();
     animationStop();
 }
@@ -131,7 +178,7 @@ javascriptNode.onaudioprocess = function() {
     // create the meters
     ctx.fillRect(0,130-average,25,130);
     // ctx.fillRect(30,130-average2,25,130);
-    if (average > 80) {
+    if (average > 95) {
         animationStart();
     }
 }
