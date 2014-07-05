@@ -13,7 +13,7 @@ var sourceNode;
 var sourceNode2;
 
 // setup a analyzer
-// var splitter;
+var splitter;
 var analyser;
 var javascriptNode;
 
@@ -73,7 +73,6 @@ function loadSound(url) {
     request.responseType = 'arraybuffer';
 
     request.onload = function() {
-
         context.decodeAudioData(request.response, function(buffer) {
             $("#playstop").append("<input id='play' type='button' onclick='playSound()' value='play'>");
            setSound(buffer);
@@ -90,7 +89,7 @@ function loadSound2(url) {
     request.onload = function() {
 
         context2.decodeAudioData(request.response, function(buffer) {
-            $("#playstop2").append("<input id='play2' type='button' onclick='playSound2()' value='play2'>");
+            // $("#playstop2").append("<input id='play2' type='button' onclick='playSound2()' value='play2'>");
            setSound2(buffer);
         }, onError);
     }
@@ -109,31 +108,33 @@ function playSound() {
     sourceNode.noteOn(0);
     $("#play").remove();
     $("#playstop").append("<input id='stop' type='button' onclick='stop()' value='stop'>");
+    sourceNode2.noteOn(0);//noteOn("sometime") sometimeを制御する
     animationStart();
 }
 
-function playSound2() {
-    sourceNode2.noteOn(0);
-    $("#play2").remove();
-    $("#playstop2").append("<input id='stop2' type='button' onclick='stop2()' value='stop2'>");
-    animationStart();
-}
+// function playSound2() {
+//     sourceNode2.noteOn(0);//noteOn("sometime") sometimeを制御する
+//     $("#play2").remove();
+//     $("#playstop2").append("<input id='stop2' type='button' onclick='stop2()' value='stop2'>");
+// }
 
 function stop() {
     sourceNode.noteOff(0);
+    sourceNode2.noteOff(0);
     $("#play").remove();
     $("#stop").remove();
     init1();
-    animationStop();
-}
-
-function stop2() {
-    sourceNode2.noteOff(0);
-    $("#play2").remove();
-    $("#stop2").remove();
     init2();
     animationStop();
 }
+
+// function stop2() {
+//     sourceNode2.noteOff(0);
+//     $("#play2").remove();
+//     $("#stop2").remove();
+//     init2();
+//     animationStop();
+// }
 
 function onError(e) {
     console.log(e);
@@ -189,6 +190,10 @@ function animationStart () {
     var interval = 1/animations.fps*1000;
     animation = setInterval(intervalEvent, interval);
     animations.frame = Math.floor(Math.random() * 521);
+    // sourceNode2.noteOff(0);
+    // sourceNode2 = context2.createBufferSource();
+    // sourceNode2.connect(context2.destination);
+    // sourceNode2.noteOn(0);//noteOn("sometime") sometimeを制御する。
 }
 
 function animationStop () {
