@@ -7,6 +7,7 @@ if (! window.AudioContext) {
 
 var context = new AudioContext();
 var context2 = new AudioContext();
+var context3 = new AudioContext();
 var audioBuffer;
 var audioBuffer2;
 var sourceNode;
@@ -90,6 +91,7 @@ function loadSound2(url) {
 
         context2.decodeAudioData(request.response, function(buffer) {
             // $("#playstop2").append("<input id='play2' type='button' onclick='playSound2()' value='play2'>");
+           bufferRe = buffer;
            setSound2(buffer);
         }, onError);
     }
@@ -108,15 +110,9 @@ function playSound() {
     sourceNode.noteOn(0);
     $("#play").remove();
     $("#playstop").append("<input id='stop' type='button' onclick='stop()' value='stop'>");
-    sourceNode2.noteOn(0);//noteOn("sometime") sometimeを制御する
+    sourceNode2.noteOn(0);
     animationStart();
 }
-
-// function playSound2() {
-//     sourceNode2.noteOn(0);//noteOn("sometime") sometimeを制御する
-//     $("#play2").remove();
-//     $("#playstop2").append("<input id='stop2' type='button' onclick='stop2()' value='stop2'>");
-// }
 
 function stop() {
     sourceNode.noteOff(0);
@@ -127,14 +123,6 @@ function stop() {
     init2();
     animationStop();
 }
-
-// function stop2() {
-//     sourceNode2.noteOff(0);
-//     $("#play2").remove();
-//     $("#stop2").remove();
-//     init2();
-//     animationStop();
-// }
 
 function onError(e) {
     console.log(e);
@@ -190,10 +178,14 @@ function animationStart () {
     var interval = 1/animations.fps*1000;
     animation = setInterval(intervalEvent, interval);
     animations.frame = Math.floor(Math.random() * 521);
-    // sourceNode2.noteOff(0);
-    // sourceNode2 = context2.createBufferSource();
-    // sourceNode2.connect(context2.destination);
-    // sourceNode2.noteOn(0);//noteOn("sometime") sometimeを制御する。
+    sourceNode2.noteOff(0);
+    if(typeof src !== 'undefined') {
+        src.stop(0);
+    };
+    src = context3.createBufferSource();
+    src.buffer = bufferRe;
+    src.connect(context3.destination);
+    src.start(0, (animations.frame)/15);
 }
 
 function animationStop () {
