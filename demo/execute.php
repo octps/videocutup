@@ -15,12 +15,15 @@ print_r($sound);
 
 exec($infomation, $out, $ret);
 
-print('<pre>');
-print_r($out);
-print_r($ret);
-print('</pre>');
+// print('<pre>');
+// print_r($out);
+// print_r($ret);
+// print('</pre>');
 
 exec($sound, $out, $ret);
+
+$redirectPath = "/demo/index.php";
+header("Location: $redirectPath");
 
 
 ///*
