@@ -6,16 +6,20 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-
     <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/ui-lightness/jquery-ui.css">
 </head>
 <body>
     <h1>audio video</h1>
-    <canvas id="animation" width="270" height="480"></canvas>
+    <form action="/convert/execute.php" method="post" enctype="multipart/form-data">
+        <input type="file" name="movie"><br>
+        <input type="submit" value="動画解析を実行する">
+    </form>
+
+<!--     <canvas id="animation" width="270" height="480"></canvas>
     <div id="slider"></div>
     <div id="playstop"></div>
     <div id="playstop2"></div>
-</body>
+ --></body>
     <script src="/js/webaudio.js"></script>
 </html>
 

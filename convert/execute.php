@@ -1,16 +1,16 @@
 <?php
 
 $movie = (object) $_FILES['movie'];
-$movie_path = "/vagrant/videocutup/demo/movies/" . $movie->name;
+$movie_path = "/vagrant/videocutup/convert/movies/" . $movie->name;
 
 move_uploaded_file($movie->tmp_name, $movie_path);
 
 $sha1 = sha1(date( "Y/m/d (D) H:i:s", time() ) . rand());
-$path = "/vagrant/videocutup/demo/images/" . $sha1;
-$infomation = "/home/vagrant/bin/ffmpeg -i /vagrant/videocutup/demo/movies/" . $movie->name . " -ss 1 -vframes 10 -f image2 " . $path . "_frame%d.jpg";
+$path = "/vagrant/videocutup/convert/images/" . $sha1;
+$infomation = "/home/vagrant/bin/ffmpeg -i /vagrant/videocutup/convert/movies/" . $movie->name . " -ss 1 -vframes 10 -f image2 " . $path . "_frame%d.jpg";
 
 $sounds_path = (object) $_FILES['movie'];
-$sound = "/home/vagrant/bin/ffmpeg -y -i /vagrant/videocutup/demo/movies/" . $movie->name . " -ss 0 -t 10 /vagrant/videocutup/demo/sounds/" . $sha1 . "_" . str_replace('.mp4', '', $movie->name) . ".mp3 2>&1";
+$sound = "/home/vagrant/bin/ffmpeg -y -i /vagrant/videocutup/convert/movies/" . $movie->name . " -ss 0 -t 10 /vagrant/videocutup/convert/sounds/" . $sha1 . "_" . str_replace('.mp4', '', $movie->name) . ".mp3 2>&1";
 print_r($sound);
 
 exec($infomation, $out, $ret);
@@ -22,7 +22,7 @@ exec($infomation, $out, $ret);
 
 exec($sound, $out, $ret);
 
-$redirectPath = "/demo/index.php?" . $sha1;
+$redirectPath = "/index.html?" . $sha1;
 header("Location: $redirectPath");
 
 
