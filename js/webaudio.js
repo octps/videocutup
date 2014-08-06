@@ -153,7 +153,23 @@ function getAverageVolume(array) {
     return average;
 }
 
+/* urlクエリ取得*/
+var getQueryVariable = function (variable) {
+    if (1 < document.location.search.length) {
+        var query = document.location.search.substring(1);
+        var parameters = query.split('&');
+        var result = new Object();
+        for (var i = 0; i < parameters.length; i++) {
+            var element = parameters[i].split('=');
 
+             var paramName = decodeURIComponent(element[0]);
+            var paramValue = decodeURIComponent(element[1]);
+            result[paramName] = decodeURIComponent(paramValue);
+        }
+    return result;
+  }
+  return {};
+}
 
 /* アニメーション */
 var animation = document.getElementById("animation");
@@ -163,14 +179,17 @@ var animations = {}
 animations.fps = 24;//フレームレート
 animations.frame = 0;
 animations.onceFlg = true;
+var query = getQueryVariable();
 
-for (var i = 1; i <= 520; i++) { //iの最大数はサーバからクエリとかでもらう?
-    images[i] = new Image();
-    images[i].src = "/images/" + i + ".jpg";
-}
+if (query.path !== undefined) {
+    for (var i = 1; i <= 144; i++) { //iの最大数はサーバからクエリとかでもらう? ffmpegで処理する秒数と連動する。現状6秒
+        images[i] = new Image();
+        images[i].src = "/convert/images/" + query.path + "_frame" + i + ".jpg";
+    }
 
-images['520'].onload = function() {
-    c.drawImage(images['1'], 0, 0);
+    images['144'].onload = function() { //image['foo']はiの最大値と同一
+        c.drawImage(images['1'], 0, 0);
+    }
 }
 
 function animationStart () {
