@@ -19,11 +19,32 @@ var analyser;
 var javascriptNode;
 
 
+/* urlクエリ取得*/
+function getQueryVariable(variable) {
+    if (1 < document.location.search.length) {
+        var query = document.location.search.substring(1);
+        var parameters = query.split('&');
+        var result = new Object();
+        for (var i = 0; i < parameters.length; i++) {
+            var element = parameters[i].split('=');
+
+             var paramName = decodeURIComponent(element[0]);
+            var paramValue = decodeURIComponent(element[1]);
+            result[paramName] = decodeURIComponent(paramValue);
+        }
+    return result;
+  }
+  return {};
+}
+
+var query = getQueryVariable();
+
+var soundPath = "/convert/sounds/" + query.path + "_sample.mp3"
 // load the sound
 setupAudioNodes1();
 setupAudioNodes2();
 loadSound("/sounds/sample.mp3");
-loadSound2("/sounds/sample2.mp3");
+loadSound2(soundPath);
 
 function init1() {
     var context = new webkitAudioContext();
@@ -40,7 +61,7 @@ function init2() {
     var sourceNode2;
 
     setupAudioNodes2();
-    loadSound2("/sounds/sample2.mp3");
+    loadSound2(soundPath);
 }
 
 function setupAudioNodes1() {
@@ -153,24 +174,6 @@ function getAverageVolume(array) {
     return average;
 }
 
-/* urlクエリ取得*/
-var getQueryVariable = function (variable) {
-    if (1 < document.location.search.length) {
-        var query = document.location.search.substring(1);
-        var parameters = query.split('&');
-        var result = new Object();
-        for (var i = 0; i < parameters.length; i++) {
-            var element = parameters[i].split('=');
-
-             var paramName = decodeURIComponent(element[0]);
-            var paramValue = decodeURIComponent(element[1]);
-            result[paramName] = decodeURIComponent(paramValue);
-        }
-    return result;
-  }
-  return {};
-}
-
 /* アニメーション */
 var animation = document.getElementById("animation");
 var c = animation.getContext("2d");
@@ -179,7 +182,6 @@ var animations = {}
 animations.fps = 24;//フレームレート
 animations.frame = 0;
 animations.onceFlg = true;
-var query = getQueryVariable();
 
 if (query.path !== undefined) {
     for (var i = 1; i <= 144; i++) { //iの最大数はサーバからクエリとかでもらう? ffmpegで処理する秒数と連動する。現状6秒
