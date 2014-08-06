@@ -22,7 +22,7 @@ exec($infomation, $out, $ret);
 
 exec($sound, $out, $ret);
 
-$redirectPath = "/demo/index.php";
+$redirectPath = "/demo/index.php?" . $sha1;
 header("Location: $redirectPath");
 
 
