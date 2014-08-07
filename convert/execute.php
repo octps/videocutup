@@ -20,7 +20,8 @@ exec($sound, $out, $ret);
 $baseSoundInfomation = "/home/vagrant/bin/ffmpeg -i /vagrant/videocutup/sounds/sample.mp3 2>&1 ";
 exec($baseSoundInfomation, $soundinfo, $ret);
 $durations = array_merge(preg_grep('/Duration: ([^,]+)/',$soundinfo));
-$duration = str_replace('.', 's', substr($durations[0], 18, 5));
+$duration = floatval(substr($durations[0], 18, 5)) * 1000;
+// $duration = str_replace('.', 's', substr($durations[0], 18, 5));
 
 $redirectPath = "/index.html?path=" . $sha1 . "&duration=" . $duration;
 header("Location: $redirectPath");

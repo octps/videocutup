@@ -27,8 +27,7 @@ function getQueryVariable(variable) {
         var result = new Object();
         for (var i = 0; i < parameters.length; i++) {
             var element = parameters[i].split('=');
-
-             var paramName = decodeURIComponent(element[0]);
+            var paramName = decodeURIComponent(element[0]);
             var paramValue = decodeURIComponent(element[1]);
             result[paramName] = decodeURIComponent(paramValue);
         }
@@ -41,6 +40,7 @@ var query = getQueryVariable();
 
 var soundPath = "/convert/sounds/" + query.path + "_sample.mp3"
 // load the sound
+
 setupAudioNodes1();
 setupAudioNodes2();
 loadSound("/sounds/sample.mp3");
@@ -135,6 +135,7 @@ function playSound() {
     $("#playstop").append("<input id='stop' type='button' onclick='stop()' value='stop'>");
     sourceNode2.start(0);
     animationStart();
+    window.durationEnd = setTimeout("stop()", Number(query.duration));
 }
 
 function stop() {
@@ -145,6 +146,7 @@ function stop() {
     init1();
     init2();
     animationStop();
+    window.clearTimeout(durationEnd);
 }
 
 function onError(e) {
