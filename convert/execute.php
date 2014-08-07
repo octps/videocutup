@@ -15,14 +15,14 @@ print_r($sound);
 
 exec($infomation, $out, $ret);
 
-// print('<pre>');
-// print_r($out);
-// print_r($ret);
-// print('</pre>');
-
 exec($sound, $out, $ret);
 
-$redirectPath = "/index.html?path=" . $sha1;
+$baseSoundInfomation = "/home/vagrant/bin/ffmpeg -i /vagrant/videocutup/sounds/sample.mp3 2>&1 ";
+exec($baseSoundInfomation, $soundinfo, $ret);
+$durations = array_merge(preg_grep('/Duration: ([^,]+)/',$soundinfo));
+$duration = str_replace('.', 's', substr($durations[0], 18, 5));
+
+$redirectPath = "/index.html?path=" . $sha1 . "&duration=" . $duration;
 header("Location: $redirectPath");
 
 
