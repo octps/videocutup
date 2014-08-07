@@ -130,16 +130,16 @@ function setSound2(buffer) {
 }
 
 function playSound() {
-    sourceNode.noteOn(0);
+    sourceNode.start(0);
     $("#play").remove();
     $("#playstop").append("<input id='stop' type='button' onclick='stop()' value='stop'>");
-    sourceNode2.noteOn(0);
+    sourceNode2.start(0);
     animationStart();
 }
 
 function stop() {
-    sourceNode.noteOff(0);
-    sourceNode2.noteOff(0);
+    sourceNode.stop(0);
+    sourceNode2.stop(0);
     $("#play").remove();
     $("#stop").remove();
     init1();
@@ -200,8 +200,8 @@ function animationStart () {
     clearInterval(animation);
     var interval = 1/animations.fps*1000;
     animation = setInterval(intervalEvent, interval);
-    animations.frame = Math.floor(Math.random() * 521);
-    sourceNode2.noteOff(0);
+    animations.frame = Math.floor(Math.random() * 145);
+    sourceNode2.stop(0);
     if(typeof src !== 'undefined') {
         src.stop(0);
     };
@@ -219,7 +219,7 @@ function intervalEvent(){
     animations.frame++;
     c.drawImage(images[animations.frame], 0, 0);
 
-    if (animations.frame>=520) {
+    if (animations.frame>=144) {
         if (animations.onceFlg) {
             clearInterval(animation);
         }
