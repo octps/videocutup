@@ -44,7 +44,9 @@ var soundPath = "/convert/sounds/" + query.path + "_sample.mp3"
 setupAudioNodes1();
 setupAudioNodes2();
 loadSound("/sounds/sample.mp3");
-loadSound2(soundPath);
+if (query.path !== undefined) {
+    loadSound2(soundPath);
+}
 
 function init1() {
     var context = new webkitAudioContext();
