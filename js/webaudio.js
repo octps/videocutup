@@ -210,7 +210,8 @@ function animationStart () {
     src = context3.createBufferSource();
     src.buffer = bufferRe;
     src.connect(context3.destination);
-    src.start(0, (animations.frame)/15);
+    var soundOffset = query.duration / 1000 * animations.frame / 144;//144はフレーム数
+    src.start(0, soundOffset);
 }
 
 function animationStop () {
