@@ -141,6 +141,7 @@ function playSound() {
 function stop() {
     sourceNode.stop(0);
     sourceNode2.stop(0);
+    src.stop(0);
     $("#play").remove();
     $("#stop").remove();
     init1();
