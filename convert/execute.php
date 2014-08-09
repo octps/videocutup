@@ -2,6 +2,7 @@
 
 $movie = (object) $_FILES['movie'];
 $movie_path = "/vagrant/videocutup/convert/movies/" . $movie->name;
+$movie_name = substr($movie->name, 0, strlen($movie->name)-4);
 
 move_uploaded_file($movie->tmp_name, $movie_path);
 
@@ -23,7 +24,7 @@ $durations = array_merge(preg_grep('/Duration: ([^,]+)/',$soundinfo));
 $duration = floatval(substr($durations[0], 18, 5)) * 1000;
 // $duration = str_replace('.', 's', substr($durations[0], 18, 5));
 
-$redirectPath = "/index.html?path=" . $sha1 . "&duration=" . $duration;
+$redirectPath = "/index.html?path=" . $sha1 . "&duration=" . $duration . "&moviename=" . $movie_name;
 header("Location: $redirectPath");
 
 

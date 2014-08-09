@@ -38,7 +38,7 @@ function getQueryVariable(variable) {
 
 var query = getQueryVariable();
 
-var soundPath = "/convert/sounds/" + query.path + "_sample.mp3"
+var soundPath = "/convert/sounds/" + query.path + "_" + query.moviename + ".mp3"
 // load the sound
 
 setupAudioNodes1();
