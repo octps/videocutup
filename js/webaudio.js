@@ -155,12 +155,12 @@ function onError(e) {
 }
 
 javascriptNode.onaudioprocess = function() {
+    var array =  new Float32Array(analyser.frequencyBinCount);
+    analyser.getFloatFrequencyData(array);
 
-    var array =  new Uint8Array(analyser.frequencyBinCount);
-    analyser.getByteFrequencyData(array);
     var average = getAverageVolume(array);
 
-    if (average > 85) {
+    if (average > -83) {
         animationStart();
     }
 }
