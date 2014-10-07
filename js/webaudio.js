@@ -230,3 +230,33 @@ function intervalEvent(){
         animations.frame = 0;
     };
 }
+
+/*mouse*/
+window.setPosition = function() {
+    window.document.onmousemove = function(e){
+        if (e.clientX > window.container.offsetLeft
+            && e.clientX < window.container.offsetWidth + window.container.offsetLeft
+            && e.clientY > window.container.offsetTop
+            && e.clientY < window.container.offsetHeight + window.container.offsetTop
+            ) {
+            window.mouseX = e.clientX - window.container.offsetLeft;
+            window.mouseY = e.clientY - window.container.offsetTop;
+        }
+        else {
+            window.setPosition();
+        }
+        window.pointer.style.left = window.mouseX + 'px';
+        window.pointer.style.top = window.mouseY  + 'px';
+    }
+}
+
+window.addEventListener( "load", function() {
+    window.setPosition();
+    window.pointer = document.getElementById("pointer");
+    window.container = document.getElementById("container");
+    window.animation = document.getElementById("animation");
+    window.container.style.left = window.animation.offsetLeft + 'px';
+    window.container.style.top = window.animation.offsetTop + 'px';
+});
+
+
