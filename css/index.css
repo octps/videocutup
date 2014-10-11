@@ -11,7 +11,7 @@
     position: absolute;
     top:1px;
     left:1px;
-    filter:alpha(opacity=20);
+    filter:alpha(opacity=60);
     -moz-opacity: 0.5;
     opacity: 0.5;
 }
@@ -20,6 +20,15 @@
     width:5px;
     height:5px;
     background: #000;
+    position: absolute;
+    top:1px;
+    left:1px;
+}
+
+#tracer {
+    width:5px;
+    height:5px;
+    background: #FFF;
     position: absolute;
     top:1px;
     left:1px;

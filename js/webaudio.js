@@ -231,32 +231,66 @@ function intervalEvent(){
     };
 }
 
-/*mouse*/
+/* 枠内で、mouseの位置をトレースするpointerの制御*/
 window.setPosition = function() {
     window.document.onmousemove = function(e){
+        window.mouse = Object();
+        window.mouse.x = false;
+        window.mouse.y = false;
         if (e.clientX > window.container.offsetLeft
             && e.clientX < window.container.offsetWidth + window.container.offsetLeft
             && e.clientY > window.container.offsetTop
             && e.clientY < window.container.offsetHeight + window.container.offsetTop
-            ) {
-            window.mouseX = e.clientX - window.container.offsetLeft;
-            window.mouseY = e.clientY - window.container.offsetTop;
+        ) {
+            window.mouse.x = e.clientX - window.container.offsetLeft;
+            window.mouse.y = e.clientY - window.container.offsetTop;
         }
-        else {
-            window.setPosition();
-        }
-        window.pointer.style.left = window.mouseX + 'px';
-        window.pointer.style.top = window.mouseY  + 'px';
+        window.pointer.style.left = window.mouse.x + 'px';
+        window.pointer.style.top = window.mouse.y + 'px';
     }
 }
 
+window.trace = function() {
+    var distanceX = parseInt(window.pointer.style.left)
+        - parseInt(window.tracer.style.left);
+    var distanceY = parseInt(window.pointer.style.top)
+        - parseInt(window.tracer.style.top);
+    window.tracer.style.left = parseInt(window.tracer.style.left)
+        + (distanceX / 20) + 'px';
+    window.tracer.style.top = parseInt(window.tracer.style.top)
+        + (distanceY / 20) + 'px';
+    window.speeder = distanceX;
+}
+
+window.speed = function() {
+    var speeds = window.speeder;
+    console.log(speeds);
+}
+
 window.addEventListener( "load", function() {
+    window.mouse = Object();
+    window.mouse.x = false;
+    window.mouse.y = false;
+    window.traceInterval = setInterval("window.trace()", 10);
+    window.speedInterval = setInterval("window.speed()", 10);
     window.setPosition();
     window.pointer = document.getElementById("pointer");
+    window.tracer = document.getElementById("tracer");
+    window.tracer.style.left = '0px';
+    window.tracer.style.top = '0px';
     window.container = document.getElementById("container");
     window.animation = document.getElementById("animation");
     window.container.style.left = window.animation.offsetLeft + 'px';
     window.container.style.top = window.animation.offsetTop + 'px';
 });
 
+
+/*
+setPosition() で、四角内でマウスの位置を取得するpointerを制御
+trace()で pointerを追いかけるtracerの制御
+
+speedを取得する。
+最大値と最小値を設定し、その範疇で挙動を変更する
+
+*/
 
