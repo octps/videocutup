@@ -1,0 +1,385 @@
+if (typeof(webkitAudioContext) !== "undefined") {
+    var audioctx = new webkitAudioContext();
+} else if (typeof(AudioContext) !== "undefined") {
+    var audioctx = new AudioContext();
+}
+
+var query = getQueryVariable();
+var soundPath = "/convert/sounds/" + query.path + "_" + query.moviename + ".mp3"
+
+var buffer = null;
+LoadSample(audioctx, soundPath);
+
+function Play() {
+    window.src = audioctx.createBufferSource();
+    src.buffer = buffer;
+    src.connect(audioctx.destination);
+    src.start(0);
+    animationStart();
+}
+
+function LoadSample(ctx, url) {
+    var req = new XMLHttpRequest();
+    req.open("GET", url, true);
+    req.responseType = "arraybuffer";
+    req.onload = function() {
+        if(req.response) {
+            ctx.decodeAudioData(req.response,function(b){buffer=b;},function(){});
+        }
+        else
+            buffer = ctx.createBuffer(VBArray(req.responseBody).toArray(), false);
+    }
+    req.send();
+}
+
+function getQueryVariable(variable) {
+    if (1 < document.location.search.length) {
+        var query = document.location.search.substring(1);
+        var parameters = query.split('&');
+        var result = new Object();
+        for (var i = 0; i < parameters.length; i++) {
+            var element = parameters[i].split('=');
+            var paramName = decodeURIComponent(element[0]);
+            var paramValue = decodeURIComponent(element[1]);
+            result[paramName] = decodeURIComponent(paramValue);
+        }
+    return result;
+  }
+  return {};
+}
+
+/* アニメーション */
+var animation = document.getElementById("animation");
+var c = animation.getContext("2d");
+var images = new Array();
+var animations = {}
+animations.fps = 24;//フレームレート
+animations.frame = 0;
+animations.onceFlg = true;
+
+if (query.path !== undefined) {
+    for (var i = 1; i <= 144; i++) { //iの最大数はサーバからクエリとかでもらう? ffmpegで処理する秒数と連動する。現状6秒
+        images[i] = new Image();
+        images[i].src = "/convert/images/" + query.path + "_frame" + i + ".jpg";
+    }
+
+    images['144'].onload = function() { //image['foo']はiの最大値と同一
+        c.drawImage(images['1'], 0, 0);
+    }
+}
+
+function animationStart () {
+    var interval = 1/animations.fps*1000;
+    animation = setInterval(intervalEvent, interval);
+}
+
+function intervalEvent() {
+    animations.frame++;
+    c.drawImage(images[animations.frame], 0, 0);
+
+    if (animations.frame>=144) {
+        if (animations.onceFlg) {
+            clearInterval(animation);
+        }
+        animations.frame = 0;
+        src.stop(0);
+    };
+}
+
+// if (! window.AudioContext) {
+//     if (! window.webkitAudioContext) {
+//         alert('no audiocontext found');
+//     }
+//     window.AudioContext = window.webkitAudioContext;
+// }
+
+// var context = new AudioContext();
+// var audioBuffer;
+// var sourceNode;
+
+// // setup a analyzer
+// var splitter;
+// var analyser;
+// var javascriptNode;
+
+
+// /* urlクエリ取得*/
+// function getQueryVariable(variable) {
+//     if (1 < document.location.search.length) {
+//         var query = document.location.search.substring(1);
+//         var parameters = query.split('&');
+//         var result = new Object();
+//         for (var i = 0; i < parameters.length; i++) {
+//             var element = parameters[i].split('=');
+//             var paramName = decodeURIComponent(element[0]);
+//             var paramValue = decodeURIComponent(element[1]);
+//             result[paramName] = decodeURIComponent(paramValue);
+//         }
+//     return result;
+//   }
+//   return {};
+// }
+
+// var query = getQueryVariable();
+
+// var soundPath = "/convert/sounds/" + query.path + "_" + query.moviename + ".mp3"
+// // load the sound
+
+// setupAudioNodes1();
+// // setupAudioNodes2();
+// // loadSound("/sounds/sample.mp3");
+// if (query.path !== undefined) {
+//     loadSound(soundPath);
+//     // loadSound2(soundPath);
+// }
+
+// function init1() {
+//     var context = new webkitAudioContext();
+//     var audioBuffer;
+//     var sourceNode;
+
+//     setupAudioNodes1();
+//     loadSound(soundPath);
+//     // loadSound("/sounds/sample.mp3");
+// }
+
+// // function init2() {
+// //     var context2 = new webkitAudioContext();
+// //     var audioBuffer2;
+// //     var sourceNode2;
+
+// //     setupAudioNodes2();
+// //     loadSound2(soundPath);
+// // }
+
+// function setupAudioNodes1() {
+//     javascriptNode = context.createScriptProcessor(2048, 1, 1);
+//     javascriptNode.connect(context.destination);
+
+//     analyser = context.createAnalyser();
+//     analyser.smoothingTimeConstant = 0.3;
+//     analyser.fftSize = 1024;
+
+//     sourceNode = context.createBufferSource();
+//     splitter = context.createChannelSplitter();
+
+//     sourceNode.connect(splitter);
+
+//     splitter.connect(analyser,0,0);
+
+//     analyser.connect(javascriptNode);
+
+//     sourceNode.connect(context.destination);
+// }
+
+// // function setupAudioNodes2() {
+// //     sourceNode2 = context2.createBufferSource();
+// //     sourceNode2.connect(context2.destination);
+// // }
+
+// function loadSound(url) {
+//     var request = new XMLHttpRequest();
+//     request.open('GET', url, true);
+//     request.responseType = 'arraybuffer';
+
+//     request.onload = function() {
+//         context.decodeAudioData(request.response, function(buffer) {
+//             $("#playstop").append("<input id='play' type='button' onclick='playSound()' value='play'>");
+//            setSound(buffer);
+//         }, onError);
+//     }
+//     request.send();
+// }
+
+// // function loadSound2(url) {
+// //     var request = new XMLHttpRequest();
+// //     request.open('GET', url, true);
+// //     request.responseType = 'arraybuffer';
+
+// //     request.onload = function() {
+
+// //         context2.decodeAudioData(request.response, function(buffer) {
+// //             // $("#playstop2").append("<input id='play2' type='button' onclick='playSound2()' value='play2'>");
+// //            bufferRe = buffer;
+// //            setSound2(buffer);
+// //         }, onError);
+// //     }
+// //     request.send();
+// // }
+
+// function setSound(buffer) {
+//     sourceNode.buffer = buffer;
+// }
+
+// // function setSound2(buffer) {
+// //     sourceNode2.buffer = buffer;
+// // }
+
+// function playSound() {
+//     sourceNode.start(0);
+//     $("#play").remove();
+//     $("#playstop").append("<input id='stop' type='button' onclick='stop()' value='stop'>");
+//     sourceNode.start(0);
+//     // sourceNode2.start(0);
+//     animationStart();
+//     window.durationEnd = setTimeout("stop()", Number(query.duration));
+// }
+
+// function stop() {
+//     sourceNode.stop(0);
+//     // sourceNode2.stop(0);
+//     src.stop(0);
+//     $("#play").remove();
+//     $("#stop").remove();
+//     init1();
+//     // init2();
+//     animationStop();
+//     window.clearTimeout(durationEnd);
+// }
+
+// function onError(e) {
+//     console.log(e);
+// }
+
+// javascriptNode.onaudioprocess = function() {
+//     var array =  new Float32Array(analyser.frequencyBinCount);
+//     analyser.getFloatFrequencyData(array);
+
+//     var average = getAverageVolume(array);
+
+//     if (average > -83) {
+//         animationStart();
+//     }
+// }
+
+// function getAverageVolume(array) {
+//     var values = 0;
+//     var average;
+
+//     var length = array.length;
+
+//     for (var i = 0; i < length; i++) {
+//         values += array[i];
+//     }
+
+//     average = values / length;
+//     return average;
+// }
+
+// /* アニメーション */
+// var animation = document.getElementById("animation");
+// var c = animation.getContext("2d");
+// var images = new Array();
+// var animations = {}
+// animations.fps = 24;//フレームレート
+// animations.frame = 0;
+// animations.onceFlg = true;
+
+// if (query.path !== undefined) {
+//     for (var i = 1; i <= 144; i++) { //iの最大数はサーバからクエリとかでもらう? ffmpegで処理する秒数と連動する。現状6秒
+//         images[i] = new Image();
+//         images[i].src = "/convert/images/" + query.path + "_frame" + i + ".jpg";
+//     }
+
+//     images['144'].onload = function() { //image['foo']はiの最大値と同一
+//         c.drawImage(images['1'], 0, 0);
+//     }
+// }
+
+// function animationStart () {
+//     clearInterval(animation);
+//     var interval = 1/animations.fps*1000;
+//     animation = setInterval(intervalEvent, interval);
+//     animations.frame = Math.floor(Math.random() * 145);
+//     sourceNode2.stop(0);
+//     if(typeof src !== 'undefined') {
+//         src.stop(0);
+//     };
+//     src = context3.createBufferSource();
+//     src.buffer = bufferRe;
+//     src.connect(context3.destination);
+//     var soundOffset = query.duration / 1000 * animations.frame / 144;//144はフレーム数
+//     src.start(0, soundOffset);
+// }
+
+// function animationStop () {
+//     clearInterval( animation );
+// }
+
+// function intervalEvent() {
+//     animations.frame++;
+//     c.drawImage(images[animations.frame], 0, 0);
+
+//     // if (animations.frame>=144) {
+//     //     if (animations.onceFlg) {
+//     //         clearInterval(animation);
+//     //     }
+//     //     animations.frame = 0;
+//     // };
+// }
+
+
+/* speedの取得 */
+/* 枠内で、mouseの位置をトレースするpointerの制御*/
+window.setPosition = function() {
+    window.document.onmousemove = function(e){
+        window.mouse = Object();
+        window.mouse.x = false;
+        window.mouse.y = false;
+        if (e.clientX > window.container.offsetLeft
+            && e.clientX < window.container.offsetWidth + window.container.offsetLeft
+            && e.clientY > window.container.offsetTop
+            && e.clientY < window.container.offsetHeight + window.container.offsetTop
+        ) {
+            window.mouse.x = e.clientX - window.container.offsetLeft;
+            window.mouse.y = e.clientY - window.container.offsetTop;
+        }
+        window.pointer.style.left = window.mouse.x + 'px';
+        window.pointer.style.top = window.mouse.y + 'px';
+    }
+}
+
+window.trace = function() {
+    var distanceX = parseInt(window.pointer.style.left)
+        - parseInt(window.tracer.style.left);
+    var distanceY = parseInt(window.pointer.style.top)
+        - parseInt(window.tracer.style.top);
+    window.tracer.style.left = parseInt(window.tracer.style.left)
+        + (distanceX / 20) + 'px';
+    window.tracer.style.top = parseInt(window.tracer.style.top)
+        + (distanceY / 20) + 'px';
+    window.speeder = distanceX;
+}
+
+window.speed = function() {
+    var speeds = window.speeder;
+    return speeds;
+}
+
+window.addEventListener( "load", function() {
+    window.mouse = Object();
+    window.mouse.x = false;
+    window.mouse.y = false;
+    window.traceInterval = setInterval("window.trace()", 10);
+    window.speedInterval = setInterval("window.speed()", 10);
+    window.setPosition();
+    window.pointer = document.getElementById("pointer");
+    window.tracer = document.getElementById("tracer");
+    window.tracer.style.left = '0px';
+    window.tracer.style.top = '0px';
+    window.container = document.getElementById("container");
+    window.animation = document.getElementById("animation");
+    window.container.style.left = window.animation.offsetLeft + 'px';
+    window.container.style.top = window.animation.offsetTop + 'px';
+});
+
+
+/*
+setPosition() で、四角内でマウスの位置を取得するpointerを制御
+trace()で pointerを追いかけるtracerの制御
+
+speedを取得する。
+最大値と最小値を設定し、その範疇で挙動を変更する
+
+*/
+
