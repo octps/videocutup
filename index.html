@@ -3,15 +3,36 @@
 <meta charset="utf-8">
 <title>テスト</title>
 <link href="css/index.css" rel="stylesheet">
+
 </head>
 <body>
-  <button onclick="play()">Play</button><br/>
+    <div id="container">
+        <div id="pointer"></div>
+        <div id="tracer"></div>
+    </div>
+    <video id="video" width="400" heighr="300">
+        <source src="/movies/sample.mp4">
+    </video>
+        <div id="ui">
+            <button id="playbtn" >再生</button>
+            <button id="stopbtn" >一時停止</button>
+            <button id="speedupbtn" >再生速度（早）</button>
+            <button id="speeddownbtn" >再生速度（遅）</button>
+            <button id="restartbtn" >最初から</button>
+        </div>
+    <p>現在の再生位置</p>
+    <p id="ichi"></p>
+
+
+
+
+<!--   <button onclick="play()">Play</button><br/>
   <canvas id="animation" width="480" height="360">
   </canvas>
   <div id="container">
     <div id="pointer"></div>
     <div id="tracer"></div>
   </div>
-</body>
-<script src="js/mousemove.js"></script>
+ --></body>
+<script src="js/video.js"></script>
 </html>
