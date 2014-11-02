@@ -45,7 +45,7 @@ video.addEventListener("timeupdate",function(){
 
 /* 枠内で、mouseの位置をトレースするpointerの制御*/
 window.setPosition = function() {
-    window.document.onmousemove = function(e){
+    window.container.onmousemove = function(e){
         window.mouse = Object();
         window.mouse.x = false;
         window.mouse.y = false;
@@ -63,19 +63,20 @@ window.setPosition = function() {
 }
 
 window.trace = function() {
-    var distanceX = parseInt(window.pointer.style.left)
-        - parseInt(window.tracer.style.left);
-    var distanceY = parseInt(window.pointer.style.top)
-        - parseInt(window.tracer.style.top);
-    window.tracer.style.left = parseInt(window.tracer.style.left)
-        + (distanceX / 50) + 'px';
-    window.tracer.style.top = parseInt(window.tracer.style.top)
-        + (distanceY / 50) + 'px';
-    window.speeder = distanceX;
-    if (window.speeder <= -1) {
-        window.speeder = -1;
+    var distanceX = parseFloat(window.pointer.style.left)
+        - parseFloat(window.tracer.style.left);
+    var distanceY = parseFloat(window.pointer.style.top)
+        - parseFloat(window.tracer.style.top);
+
+    window.tracer.style.left = parseFloat(window.tracer.style.left)
+        + (distanceX / 40) + 'px';
+    window.tracer.style.top = parseFloat(window.tracer.style.top)
+        + (distanceY / 40) + 'px';
+    window.speeder = distanceX / 100;
+    if (window.speeder < -0.999) {
+        window.speeder = -0.999;
     }
-    video.playbackRate = window.speeder/100;
+    video.playbackRate = window.speeder;
 }
 
 container.addEventListener("mousedown", function() {
@@ -91,11 +92,13 @@ window.addEventListener( "load", function() {
     window.mouse = Object();
     window.mouse.x = false;
     window.mouse.y = false;
-    window.setPosition();
+    // window.setPosition();
     window.pointer = document.getElementById("pointer");
     window.tracer = document.getElementById("tracer");
     window.tracer.style.left = '0px';
     window.tracer.style.top = '0px';
+    window.pointer.style.left = '0px';
+    window.pointer.style.top = '0px';
     window.container = document.getElementById("container");
     window.video = document.getElementById("video");
     video.playbackRate = 1;
