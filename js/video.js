@@ -73,14 +73,14 @@ window.trace = function() {
     window.tracer.style.top = parseFloat(window.tracer.style.top)
         + (distanceY / 40) + 'px';
     window.speeder = distanceX / 100;
-    if (window.speeder < -0.999) {
-        window.speeder = -0.999;
+    if (window.speeder < 0) {
+        window.speeder = - 1;
     }
     video.playbackRate = window.speeder;
 }
 
 container.addEventListener("mousedown", function() {
-    window.traceInterval = setInterval("window.trace()", 1);
+    window.traceInterval = setInterval("window.trace()", 10);
 });
 
 container.addEventListener("mouseup", function() {
@@ -92,7 +92,7 @@ window.addEventListener( "load", function() {
     window.mouse = Object();
     window.mouse.x = false;
     window.mouse.y = false;
-    // window.setPosition();
+    window.setPosition();
     window.pointer = document.getElementById("pointer");
     window.tracer = document.getElementById("tracer");
     window.tracer.style.left = '0px';
@@ -101,6 +101,7 @@ window.addEventListener( "load", function() {
     window.pointer.style.top = '0px';
     window.container = document.getElementById("container");
     window.video = document.getElementById("video");
+    window.speeder = 1;
     video.playbackRate = 1;
     window.container.style.left = window.video.offsetLeft + 'px';
     window.container.style.top = window.video.offsetTop + 'px';
