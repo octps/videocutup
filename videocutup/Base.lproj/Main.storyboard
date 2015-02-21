@@ -26,25 +26,17 @@
                                 <state key="normal" title="play">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="playMovie:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="BWd-HY-X3I"/>
+                                </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BDI-YT-VMV">
-                                <rect key="frame" x="140" y="198" width="320" height="204"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="204" id="6la-JH-Ss4"/>
-                                    <constraint firstAttribute="width" constant="320" id="xG9-Rh-SKm"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="BDI-YT-VMV" secondAttribute="centerY" id="1II-x9-qbf"/>
                             <constraint firstAttribute="centerX" secondItem="J08-Ws-25l" secondAttribute="centerX" id="8Fg-ZK-YIF"/>
                             <constraint firstItem="J08-Ws-25l" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="296" id="AWB-3B-0QO"/>
-                            <constraint firstAttribute="centerX" secondItem="BDI-YT-VMV" secondAttribute="centerX" id="H6g-uF-T6G"/>
                             <constraint firstAttribute="centerY" secondItem="J08-Ws-25l" secondAttribute="centerY" id="Xhh-Yz-9RF"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="J08-Ws-25l" secondAttribute="bottom" constant="32" id="Z31-OY-7jf"/>
-                            <constraint firstAttribute="centerX" secondItem="BDI-YT-VMV" secondAttribute="centerX" id="pJB-XD-mY2"/>
                             <constraint firstAttribute="centerX" secondItem="J08-Ws-25l" secondAttribute="centerX" id="tZt-PX-5hj"/>
                             <constraint firstAttribute="trailingMargin" secondItem="J08-Ws-25l" secondAttribute="trailing" constant="296" id="xNW-rj-ZI1"/>
                         </constraints>
