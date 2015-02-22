@@ -1,5 +1,32 @@
 @charset "utf-8";
 
 .red {
-    color: red;
+  color: red;
+}
+
+#clip-play {
+  overflow: hidden;
+  text-align: center;
+}
+#clip-play div {
+  float: left;
+  margin:10px 10px 0;
+  min-width: 150px;
+  min-height: 120px;
+}
+#clip-play button {
+  width:100px;
+  height:30px;
+  font-size:110%;
+}
+
+#clip-record {
+  clear:both;
+  margin:30px 0 0;
+  text-align:center;
+}
+#clip-record button {
+  width:200px;
+  height:70px;
+  font-size:120%;
 }

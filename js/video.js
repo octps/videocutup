@@ -1,90 +1,118 @@
-jQuery(function(){
+$(function(){
 	window.clipCount = 0;
+	window.clipPlayCount = 0;
+  window.clipRecord = [];
+  window.clipRecords = [];
+  window.clipTapTime = [
+   [],
+   [],
+   []
+  ];
+  window.lastClipTapTime = "";
+  window.clipPlayEndFlag = "first";
+  window.clipInterval = [];
 
-  var clipRecord = [];
-  var clipRecords = [];
-  
-  jQuery("#clip-record button").mousedown(
+  $("#clip-record button").mousedown(
     function(){
-      clipRecord.push(window.video.currentTime);
-      $(this).html("now recording...");
+      if (window.clipCount < 3) {
+        clipRecord.push(window.video.currentTime);
+        $(this).html("now recording...");
+      }
+
+      else {
+        return false;
+      }
     }
   ).mouseup(
     function(){
-      clipRecord.push(window.video.currentTime);
+      if (window.clipCount < 3) {
+        captureImage(window.clipCount);
 
-      clipRecords[clipCount] = clipRecord;
-      clipRecord = [];
-      console.log(clipRecords);
-      console.log(clipRecords[0][0]);
-      console.log($("#clip-play button"));
-      $(this).html("record");
+        clipRecord.push(window.video.currentTime);
 
-      jQuery.each(clipRecords, function(i) {
-        $("#clip-play button").eq(i).click(function () {
-          window.video.currentTime = clipRecords[i][0];
-        });
-      });
+        clipRecords[clipCount] = clipRecord;
+        clipRecord = [];
 
-      window.clipCount = window.clipCount + 1;
+        $(this).html("record");
 
-      if (window.clipCount > 0) {
-        btnView(window.clipCount);
+        window.clipCount = window.clipCount + 1;
+
+        if (window.clipCount > 0) {
+          btnView(window.clipCount);
+        }
       }
 
-      if (window.clipCount == 3) {
-      	window.clipCount = 0;
+      else {
+        return false;
       }
     }
   );
 
   var btnView = function (index) {
-    $("#clip-play button").eq(index - 1).html('clip');
+    $("#clip-play button").eq(index - 1).html('play!');
   }
 });
 
+var clipPlay = function (t) {
+  var index = $("#clip-play button").index(t);
 
-//window.onload = function() {
-//	window.records = [];
-//	window.recordsArray = [];
-//	window.video = document.getElementById("video");
-//	window.clipCount = 0;
-//}
-//
-//var clipStart = function() {
-//	window.records[0] = window.video.currentTime;
-//}
-//
-//var clipStop = function() {
-//	window.records[1] = window.video.currentTime;
-//  console.log(window.records)
-//	window.recordsArray[clipCount] = [window.records[0], window.records[1]]
-//
-//	window.clipCount = window.clipCount + 1;
-//	if (window.clipCount == 3) {
-//		window.clipCount = 0;
-//	}
-//}
-//
-//var clipPlay0 = function() {
-//	window.video.currentTime = window.recordsArray[0][0];
-//	window.clipInterval = setInterval("clip(" + window.recordsArray[0] +")", 10)
-//}
-//
-//var clipPlay1 = function() {
-//	window.video.currentTime = window.recordsArray[1][0];
-//	window.clipInterval = setInterval("clip(" + window.recordsArray[1] +")", 10)
-//}
-//
-//var clipPlay2 = function() {
-//	window.video.currentTime = window.recordsArray[2][0];
-//	window.clipInterval = setInterval("clip(" + window.recordsArray[2] +")", 10)
-//}
-//
-//var clip = function (array) {
-//    var clipTime = window.video.currentTime
-//	if (clipTime > array[1]) {
-//    	window.video.currentTime = array[1];
-//		clearInterval(window.clipInterval);
-//	}
-//}
+  clearInterval(window.clipInterval);
+
+  window.clipPlayCount = window.clipPlayCount + 1;
+
+
+  if (clipPlayEndFlag == "first") {
+    console.log('なし');
+    clipTapTime[index].push(window.video.currentTime);
+  }
+
+  else if (clipPlayEndFlag === "false") {
+    console.log('フォルス');
+    clipTapTime[index].push(window.lastClipTapTime);
+  }
+
+  else if (clipPlayEndFlag === "true") {
+    console.log('トゥルー');
+    clipTapTime[index].push(window.video.currentTime);
+  }
+
+  window.clipPlayEndFlag = "false";
+  window.video.currentTime = clipRecords[index][0];
+
+  window.lastClipTapTime = clipTapTime[index][clipTapTime[index].length - 1];
+
+	window.clipInterval = setInterval(
+    function () {
+	    if (window.video.currentTime > clipRecords[index][1]) {
+        window.clipPlayEndFlag = "true";
+        window.video.currentTime = lastClipTapTime;
+        clearInterval(window.clipInterval);
+	    }
+    }, 1
+  );
+};
+
+var captureImage = function (index) {
+  var video  = document.getElementById('video')
+    , output = $('.capture-output')
+    , canvas = capture(video)
+    ;
+
+  output.eq(index).html(canvas);
+
+  function capture(video) {
+    var w = video.videoWidth * 0.2
+      , h = video.videoHeight * 0.2
+      , canvas = document.createElement('canvas')
+      ;
+
+    canvas.width  = w;
+    canvas.height = h;
+
+    var ctx = canvas.getContext('2d');
+    
+    ctx.drawImage(video, 0, 0, w, h);
+
+    return canvas;
+  }
+};

@@ -8,19 +8,27 @@
 </head>
 
 <body>
-<video id="video" width="100%" height="" autoplay loop webkit-playsinline>
-	<source src='movie/test.mp4'>
+<video id="video" src="movie/test.mp4" width="100%" height="" autoplay loop webkit-playsinline>
+	<source src="movie/test.mp4">
 </video>
 
-
 <div id="clip-play">
-  <button>no clip</button>
-  <button>no clip</button>
-  <button>no clip</button>
+  <div>
+    <div class="capture-output"></div><br>
+    <button onclick="clipPlay(this);">no clip</button>
+  </div>
+  <div>
+    <div class="capture-output"></div><br>
+    <button onclick="clipPlay(this);">no clip</button>
+  </div>
+  <div>
+    <div class="capture-output"></div><br>
+    <button onclick="clipPlay(this);">no clip</button>
+  </div>
 </div>
 
 <div id="clip-record">
-  <button>record</button>
+  <button>clip record</button>
 </div>
 
 </body>
