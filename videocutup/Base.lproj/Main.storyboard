@@ -30,18 +30,42 @@
                                     <action selector="playMovie:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="BWd-HY-X3I"/>
                                 </connections>
                             </button>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EmH-6x-sux">
+                                <rect key="frame" x="16" y="40" width="568" height="478"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="320" id="8bN-2f-AdA"/>
+                                    <constraint firstAttribute="width" constant="240" id="OhE-7U-L0H"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="8bN-2f-AdA"/>
+                                        <exclude reference="OhE-7U-L0H"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="I1S-RN-zGe"/>
+                                </connections>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="J08-Ws-25l" secondAttribute="centerX" id="8Fg-ZK-YIF"/>
                             <constraint firstItem="J08-Ws-25l" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="296" id="AWB-3B-0QO"/>
+                            <constraint firstItem="EmH-6x-sux" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="20" id="M8D-Gp-8BX"/>
+                            <constraint firstItem="J08-Ws-25l" firstAttribute="top" secondItem="EmH-6x-sux" secondAttribute="bottom" constant="20" id="Ttr-5I-dzo"/>
+                            <constraint firstAttribute="centerY" secondItem="EmH-6x-sux" secondAttribute="centerY" id="VCR-2q-6R1"/>
                             <constraint firstAttribute="centerY" secondItem="J08-Ws-25l" secondAttribute="centerY" id="Xhh-Yz-9RF"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="J08-Ws-25l" secondAttribute="bottom" constant="32" id="Z31-OY-7jf"/>
+                            <constraint firstAttribute="centerX" secondItem="EmH-6x-sux" secondAttribute="centerX" id="lFp-8h-bV5"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="EmH-6x-sux" secondAttribute="trailing" id="qdK-kB-e4G"/>
                             <constraint firstAttribute="centerX" secondItem="J08-Ws-25l" secondAttribute="centerX" id="tZt-PX-5hj"/>
+                            <constraint firstItem="EmH-6x-sux" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="uvC-vf-N0I"/>
                             <constraint firstAttribute="trailingMargin" secondItem="J08-Ws-25l" secondAttribute="trailing" constant="296" id="xNW-rj-ZI1"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="VCR-2q-6R1"/>
+                                <exclude reference="lFp-8h-bV5"/>
                                 <exclude reference="AWB-3B-0QO"/>
                                 <exclude reference="Xhh-Yz-9RF"/>
                                 <exclude reference="tZt-PX-5hj"/>
@@ -49,6 +73,9 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="webView" destination="EmH-6x-sux" id="opL-Ge-1Yg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>

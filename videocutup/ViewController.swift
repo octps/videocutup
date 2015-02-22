@@ -14,25 +14,34 @@ class ViewController: UIViewController {
     var playerItem : AVPlayerItem!
     var videoPlayer : AVPlayer!
 
-
     override func viewDidLoad() {
-        let path = NSBundle.mainBundle().pathForResource("test", ofType: "mp4")
-        let fileURL = NSURL(fileURLWithPath: path!)
-        let avAsset = AVURLAsset(URL: fileURL, options: nil)
-
-        playerItem = AVPlayerItem(asset: avAsset)
-        videoPlayer = AVPlayer(playerItem: playerItem)
-        let videoPlayerView = AVPlayerView(frame: self.view.bounds)
-        
-        let layer = videoPlayerView.layer as AVPlayerLayer
-        layer.videoGravity = AVLayerVideoGravityResizeAspect
-        layer.player = videoPlayer
-        
-        self.view.layer.addSublayer(layer)
+//        let path = NSBundle.mainBundle().pathForResource("test", ofType: "mp4")
+//        let fileURL = NSURL(fileURLWithPath: path!)
+//        let avAsset = AVURLAsset(URL: fileURL, options: nil)
+//
+//        playerItem = AVPlayerItem(asset: avAsset)
+//        videoPlayer = AVPlayer(playerItem: playerItem)
+//        let videoPlayerView = AVPlayerView(frame: self.view.bounds)
+//        
+//        let layer = videoPlayerView.layer as AVPlayerLayer
+//        layer.videoGravity = AVLayerVideoGravityResizeAspect
+//        layer.player = videoPlayer
+//        
+//        self.view.layer.addSublayer(layer)
 
         super.viewDidLoad()
+        loadAddressURL()
     }
+    
+    @IBOutlet weak var webView: UIWebView!
+    var targetURL = "http://www.apple.com/"
 
+    func loadAddressURL() {
+        let requestURL = NSURL(string: targetURL)
+        let req = NSURLRequest(URL: requestURL!)
+        webView.loadRequest(req)
+    }
+    
     @IBAction func playMovie(sender: UIButton) {
         videoPlayer.seekToTime(CMTimeMakeWithSeconds(0, Int32(NSEC_PER_SEC)))
         videoPlayer.play()
