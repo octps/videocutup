@@ -34,10 +34,12 @@ class ViewController: UIViewController {
     }
     
     @IBOutlet weak var webView: UIWebView!
-    var targetURL = "http://www.apple.com/"
+    
+
+    var targetURL = NSBundle.mainBundle().pathForResource("index", ofType: "html");
 
     func loadAddressURL() {
-        let requestURL = NSURL(string: targetURL)
+        let requestURL = NSURL(string: targetURL!)
         let req = NSURLRequest(URL: requestURL!)
         webView.loadRequest(req)
     }
