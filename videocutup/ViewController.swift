@@ -22,29 +22,29 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigat
     override func viewDidLoad() {
         super.viewDidLoad()
         loadAddressURL()
-        var path = NSBundle.mainBundle().pathForResource("test", ofType: "mp4")
-        showMovie(NSURL(fileURLWithPath: path!)!) //起動時に固定ファイルを表示
+//        var path = NSBundle.mainBundle().pathForResource("test", ofType: "mp4")
+//        showMovie(NSURL(fileURLWithPath: path!)!) //起動時に固定ファイルを表示
     }
 
     // 動画を表示するメソッド 最終的には破棄予定
-    func showMovie(movieUrl:NSURL) {
-        var fileURL = movieUrl
-        var avAsset = AVURLAsset(URL: fileURL, options: nil)
-
-        playerItem = AVPlayerItem(asset: avAsset)
-        videoPlayer = AVPlayer(playerItem: playerItem)
-        var videoPlayerView = AVPlayerView(frame: self.view.bounds)
-
-        var layer = videoPlayerView.layer as AVPlayerLayer
-        layer.videoGravity = AVLayerVideoGravityResizeAspect
-        layer.player = videoPlayer
-
-        self.view.layer.addSublayer(layer)
-    }
+//    func showMovie(movieUrl:NSURL) {
+//        var fileURL = movieUrl
+//        var avAsset = AVURLAsset(URL: fileURL, options: nil)
+//
+//        playerItem = AVPlayerItem(asset: avAsset)
+//        videoPlayer = AVPlayer(playerItem: playerItem)
+//        var videoPlayerView = AVPlayerView(frame: self.view.bounds)
+//
+//        var layer = videoPlayerView.layer as AVPlayerLayer
+//        layer.videoGravity = AVLayerVideoGravityResizeAspect
+//        layer.player = videoPlayer
+//
+//        self.view.layer.addSublayer(layer)
+//    }
 
     @IBAction func playMovie(sender: UIButton) {
-        videoPlayer.seekToTime(CMTimeMakeWithSeconds(0, Int32(NSEC_PER_SEC)))
-        videoPlayer.play()
+//        videoPlayer.seekToTime(CMTimeMakeWithSeconds(0, Int32(NSEC_PER_SEC)))
+//        videoPlayer.play()
     }
 
     // カメラロールにアクセスする、動画のみを表示
@@ -65,7 +65,7 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigat
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingMediaWithInfo info: NSDictionary!) {
         var url = info[UIImagePickerControllerMediaURL] as NSURL!
         self.dismissViewControllerAnimated(true, completion: nil)
-        showMovie(url)
+//        showMovie(url)
         
     }
 
