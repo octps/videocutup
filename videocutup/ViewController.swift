@@ -9,33 +9,88 @@
 import UIKit
 import AVFoundation
 import CoreMedia
+import ImageIO
+import MobileCoreServices
 
-class ViewController: UIViewController {
+
+class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate  {
+    
+    @IBOutlet weak var photoSelectButton: UIButton!
     var playerItem : AVPlayerItem!
     var videoPlayer : AVPlayer!
 
     override func viewDidLoad() {
-//        let path = NSBundle.mainBundle().pathForResource("test", ofType: "mp4")
-//        let fileURL = NSURL(fileURLWithPath: path!)
-//        let avAsset = AVURLAsset(URL: fileURL, options: nil)
-//
-//        playerItem = AVPlayerItem(asset: avAsset)
-//        videoPlayer = AVPlayer(playerItem: playerItem)
-//        let videoPlayerView = AVPlayerView(frame: self.view.bounds)
-//        
-//        let layer = videoPlayerView.layer as AVPlayerLayer
-//        layer.videoGravity = AVLayerVideoGravityResizeAspect
-//        layer.player = videoPlayer
-//        
-//        self.view.layer.addSublayer(layer)
-
         super.viewDidLoad()
         loadAddressURL()
+        var path = NSBundle.mainBundle().pathForResource("test", ofType: "mp4")
+        showMovie(NSURL(fileURLWithPath: path!)!)
+    }
+
+    func showMovie(movieUrl:NSURL) {
+        var fileURL = movieUrl
+        var avAsset = AVURLAsset(URL: fileURL, options: nil)
+
+        playerItem = AVPlayerItem(asset: avAsset)
+        videoPlayer = AVPlayer(playerItem: playerItem)
+        var videoPlayerView = AVPlayerView(frame: self.view.bounds)
+
+        var layer = videoPlayerView.layer as AVPlayerLayer
+        layer.videoGravity = AVLayerVideoGravityResizeAspect
+        layer.player = videoPlayer
+
+        self.view.layer.addSublayer(layer)
+    }
+
+    @IBAction func playMovie(sender: UIButton) {
+        videoPlayer.seekToTime(CMTimeMakeWithSeconds(0, Int32(NSEC_PER_SEC)))
+        videoPlayer.play()
+    }
+
+    
+    @IBAction func photoSelectButtonTouchDown(sender: AnyObject) {
+        
+        if !UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
+            UIAlertView(title: "警告", message: "Photoライブラリにアクセス出来ません", delegate: nil, cancelButtonTitle: "OK").show()
+        } else {
+            var imagePickerController = UIImagePickerController()
+            // フォトライブラリから選択
+            imagePickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+            imagePickerController.mediaTypes = NSArray(object: kUTTypeMovie)
+            // 編集OFFに設定
+            // これをtrueにすると写真選択時、写真編集画面に移る
+            imagePickerController.allowsEditing = false
+            
+            // デリゲート設定
+            imagePickerController.delegate = self
+            
+            // 選択画面起動
+            self.presentViewController(imagePickerController,animated:true ,completion:nil)
+        }
     }
     
+    //
+    // --- UIImagePickerDelegate ---
+    //
+    
+    // 写真選択時に呼ばれる
+    func imagePickerController(picker: UIImagePickerController!, didFinishPickingMediaWithInfo info: NSDictionary!) {
+        
+        var url = info[UIImagePickerControllerMediaURL] as NSURL!
+        
+        // イメージ表示
+        // var image = info[UIImagePickerControllerOriginalImage] as UIImage
+        // println(image)
+        
+        //        mainImageView.image = image
+        
+        // 選択画面閉じる
+        self.dismissViewControllerAnimated(true, completion: nil)
+        showMovie(url)
+        
+    }
+
     @IBOutlet weak var webView: UIWebView!
     
-
     var targetURL = NSBundle.mainBundle().pathForResource("index", ofType: "html");
 
     func loadAddressURL() {
@@ -44,15 +99,9 @@ class ViewController: UIViewController {
         webView.loadRequest(req)
     }
     
-    @IBAction func playMovie(sender: UIButton) {
-        videoPlayer.seekToTime(CMTimeMakeWithSeconds(0, Int32(NSEC_PER_SEC)))
-        videoPlayer.play()
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
 
 }
 

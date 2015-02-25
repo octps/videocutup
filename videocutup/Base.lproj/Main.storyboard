@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -46,12 +46,22 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="I1S-RN-zGe"/>
                                 </connections>
                             </webView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oQm-78-oNX">
+                                <rect key="frame" x="533" y="560" width="41" height="30"/>
+                                <state key="normal" title="select">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="photoSelectButtonTouchDown:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="MMd-kt-pOk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="J08-Ws-25l" secondAttribute="centerX" id="8Fg-ZK-YIF"/>
                             <constraint firstItem="J08-Ws-25l" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="296" id="AWB-3B-0QO"/>
                             <constraint firstItem="EmH-6x-sux" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="20" id="M8D-Gp-8BX"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="oQm-78-oNX" secondAttribute="bottom" constant="10" id="MTe-b5-mvI"/>
                             <constraint firstItem="J08-Ws-25l" firstAttribute="top" secondItem="EmH-6x-sux" secondAttribute="bottom" constant="20" id="Ttr-5I-dzo"/>
                             <constraint firstAttribute="centerY" secondItem="EmH-6x-sux" secondAttribute="centerY" id="VCR-2q-6R1"/>
                             <constraint firstAttribute="centerY" secondItem="J08-Ws-25l" secondAttribute="centerY" id="Xhh-Yz-9RF"/>
@@ -60,6 +70,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="EmH-6x-sux" secondAttribute="trailing" id="qdK-kB-e4G"/>
                             <constraint firstAttribute="centerX" secondItem="J08-Ws-25l" secondAttribute="centerX" id="tZt-PX-5hj"/>
                             <constraint firstItem="EmH-6x-sux" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="uvC-vf-N0I"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="oQm-78-oNX" secondAttribute="trailing" constant="10" id="wYK-cf-A1h"/>
                             <constraint firstAttribute="trailingMargin" secondItem="J08-Ws-25l" secondAttribute="trailing" constant="296" id="xNW-rj-ZI1"/>
                         </constraints>
                         <variation key="default">
@@ -74,6 +85,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="photoSelectButton" destination="oQm-78-oNX" id="T8u-qd-nTp"/>
                         <outlet property="webView" destination="EmH-6x-sux" id="opL-Ge-1Yg"/>
                     </connections>
                 </viewController>
