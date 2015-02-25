@@ -65,7 +65,13 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigat
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingMediaWithInfo info: NSDictionary!) {
         var url = info[UIImagePickerControllerMediaURL] as NSURL!
         self.dismissViewControllerAnimated(true, completion: nil)
-//        showMovie(url)
+        println(url)
+        var htmlTitle = webView.stringByEvaluatingJavaScriptFromString("callFromSwift('yes')");
+//                var JSScript =  + callFromSwift(" + url.absoluteString! + ")'"
+        //        println(JSScript)
+        //        var htmlTitle = webView.stringByEvaluatingJavaScriptFromString(JSScript);
+        //        showMovie(url)
+
         
     }
 
