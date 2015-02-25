@@ -23,9 +23,10 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigat
         super.viewDidLoad()
         loadAddressURL()
         var path = NSBundle.mainBundle().pathForResource("test", ofType: "mp4")
-        showMovie(NSURL(fileURLWithPath: path!)!)
+        showMovie(NSURL(fileURLWithPath: path!)!) //起動時に固定ファイルを表示
     }
 
+    // 動画を表示するメソッド 最終的には破棄予定
     func showMovie(movieUrl:NSURL) {
         var fileURL = movieUrl
         var avAsset = AVURLAsset(URL: fileURL, options: nil)
@@ -46,44 +47,23 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigat
         videoPlayer.play()
     }
 
-    
+    // カメラロールにアクセスする、動画のみを表示
     @IBAction func photoSelectButtonTouchDown(sender: AnyObject) {
-        
         if !UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
             UIAlertView(title: "警告", message: "Photoライブラリにアクセス出来ません", delegate: nil, cancelButtonTitle: "OK").show()
         } else {
             var imagePickerController = UIImagePickerController()
-            // フォトライブラリから選択
             imagePickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
             imagePickerController.mediaTypes = NSArray(object: kUTTypeMovie)
-            // 編集OFFに設定
-            // これをtrueにすると写真選択時、写真編集画面に移る
             imagePickerController.allowsEditing = false
-            
-            // デリゲート設定
             imagePickerController.delegate = self
-            
-            // 選択画面起動
             self.presentViewController(imagePickerController,animated:true ,completion:nil)
         }
     }
     
-    //
-    // --- UIImagePickerDelegate ---
-    //
-    
-    // 写真選択時に呼ばれる
+    // カメラロールから選択後、選択した動画のurlを動画表示メソッドに渡す
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingMediaWithInfo info: NSDictionary!) {
-        
         var url = info[UIImagePickerControllerMediaURL] as NSURL!
-        
-        // イメージ表示
-        // var image = info[UIImagePickerControllerOriginalImage] as UIImage
-        // println(image)
-        
-        //        mainImageView.image = image
-        
-        // 選択画面閉じる
         self.dismissViewControllerAnimated(true, completion: nil)
         showMovie(url)
         
