@@ -62,17 +62,14 @@ var clipPlay = function (t) {
 
 
   if (clipPlayEndFlag == "first") {
-    console.log('なし');
     clipTapTime[index].push(window.video.currentTime);
   }
 
   else if (clipPlayEndFlag === "false") {
-    console.log('フォルス');
     clipTapTime[index].push(window.lastClipTapTime);
   }
 
   else if (clipPlayEndFlag === "true") {
-    console.log('トゥルー');
     clipTapTime[index].push(window.video.currentTime);
   }
 
@@ -115,4 +112,22 @@ var captureImage = function (index) {
 
     return canvas;
   }
+};
+
+var clipDelete = function (t) {
+  var division = $("#clip-play .box")
+    , index = $("#clip-play a").index(t)
+    , output = $('.capture-output')
+    ;
+
+  output.eq(index).html('');
+  $("#clip-play button").eq(index).html('no clip');
+  $("#clip-play").append(division.eq(index).clone());
+
+  division.eq(index).remove();
+  console.log(clipRecords);
+
+  clipRecords.splice(index, 1);
+
+  window.clipCount = window.clipCount - 1;
 };
