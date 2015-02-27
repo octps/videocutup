@@ -17,21 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J08-Ws-25l">
-                                <rect key="frame" x="285" y="538" width="30" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="GZb-tp-5ky"/>
-                                    <constraint firstAttribute="width" constant="30" id="PTi-wt-Wwn"/>
-                                </constraints>
-                                <state key="normal" title="play">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="playMovie:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="BWd-HY-X3I"/>
-                                </connections>
-                            </button>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EmH-6x-sux">
-                                <rect key="frame" x="16" y="40" width="568" height="478"/>
+                                <rect key="frame" x="16" y="40" width="568" height="520"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="320" id="8bN-2f-AdA"/>
                                     <constraint firstAttribute="width" constant="240" id="OhE-7U-L0H"/>
@@ -58,29 +45,19 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="J08-Ws-25l" secondAttribute="centerX" id="8Fg-ZK-YIF"/>
-                            <constraint firstItem="J08-Ws-25l" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="296" id="AWB-3B-0QO"/>
                             <constraint firstItem="EmH-6x-sux" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="20" id="M8D-Gp-8BX"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="oQm-78-oNX" secondAttribute="bottom" constant="10" id="MTe-b5-mvI"/>
-                            <constraint firstItem="J08-Ws-25l" firstAttribute="top" secondItem="EmH-6x-sux" secondAttribute="bottom" constant="20" id="Ttr-5I-dzo"/>
                             <constraint firstAttribute="centerY" secondItem="EmH-6x-sux" secondAttribute="centerY" id="VCR-2q-6R1"/>
-                            <constraint firstAttribute="centerY" secondItem="J08-Ws-25l" secondAttribute="centerY" id="Xhh-Yz-9RF"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="J08-Ws-25l" secondAttribute="bottom" constant="32" id="Z31-OY-7jf"/>
                             <constraint firstAttribute="centerX" secondItem="EmH-6x-sux" secondAttribute="centerX" id="lFp-8h-bV5"/>
                             <constraint firstAttribute="trailingMargin" secondItem="EmH-6x-sux" secondAttribute="trailing" id="qdK-kB-e4G"/>
-                            <constraint firstAttribute="centerX" secondItem="J08-Ws-25l" secondAttribute="centerX" id="tZt-PX-5hj"/>
                             <constraint firstItem="EmH-6x-sux" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="uvC-vf-N0I"/>
                             <constraint firstAttribute="trailingMargin" secondItem="oQm-78-oNX" secondAttribute="trailing" constant="10" id="wYK-cf-A1h"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="J08-Ws-25l" secondAttribute="trailing" constant="296" id="xNW-rj-ZI1"/>
+                            <constraint firstAttribute="centerY" secondItem="EmH-6x-sux" secondAttribute="centerY" id="y3b-pb-XAG"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="VCR-2q-6R1"/>
                                 <exclude reference="lFp-8h-bV5"/>
-                                <exclude reference="AWB-3B-0QO"/>
-                                <exclude reference="Xhh-Yz-9RF"/>
-                                <exclude reference="tZt-PX-5hj"/>
-                                <exclude reference="xNW-rj-ZI1"/>
                             </mask>
                         </variation>
                     </view>
