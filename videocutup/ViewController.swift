@@ -25,9 +25,6 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigat
     }
 
 
-    @IBAction func playMovie(sender: UIButton) {
-    }
-
     // カメラロールにアクセスする、動画のみを表示
     @IBAction func photoSelectButtonTouchDown(sender: AnyObject) {
         if !UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
