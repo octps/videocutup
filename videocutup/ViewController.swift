@@ -64,10 +64,11 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigat
     // カメラロールから選択後、選択した動画のurlを動画表示メソッドに渡す
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingMediaWithInfo info: NSDictionary!) {
         var url = info[UIImagePickerControllerMediaURL] as NSURL!
+        var pickedURL:NSURL = info[UIImagePickerControllerReferenceURL] as NSURL
         self.dismissViewControllerAnimated(true, completion: nil)
         var JSScript =  "callFromSwift('" + url.absoluteString! + "')"
         var htmlTitle = webView.stringByEvaluatingJavaScriptFromString(JSScript);
-        //        showMovie(url)        
+        //        showMovie(url)
     }
 
     @IBOutlet weak var webView: UIWebView!

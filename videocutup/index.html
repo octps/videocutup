@@ -2,13 +2,13 @@
 <head>
 <meta charset="utf-8">
     <script>
-        var callFromSwift = function(text) {
-            alert(text);
+        var callFromSwift = function(url) {
+            document.getElementById("source").src = url;
         }
     </script>
 </head>
 <body>
 index
-<video src=""></video>
+<video controls="controls" webkit-playsinline="webkit-playsinline"<source id="source" src=""></video>
 </body>
 </html>
