@@ -22,7 +22,6 @@
 		C44E96151A98C40D006E420F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C44E96141A98C40D006E420F /* Images.xcassets */; };
 		C44E96181A98C40D006E420F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C44E96161A98C40D006E420F /* LaunchScreen.xib */; };
 		C44E96241A98C40D006E420F /* videocutupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44E96231A98C40D006E420F /* videocutupTests.swift */; };
-		C44E96301A996E62006E420F /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = C44E962F1A996E62006E420F /* index.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,10 +35,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B4D44C881AA1A65B005A7DED /* test.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = test.css; sourceTree = "<group>"; };
+		B4D44C881AA1A65B005A7DED /* test.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = test.css; path = css/test.css; sourceTree = "<group>"; };
 		B4D44C891AA1A65B005A7DED /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
-		B4D44C8B1AA1A65B005A7DED /* jquery-1.8.3.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "jquery-1.8.3.min.js"; sourceTree = "<group>"; };
-		B4D44C8C1AA1A65B005A7DED /* video.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = video.js; sourceTree = "<group>"; };
+		B4D44C8B1AA1A65B005A7DED /* jquery-1.8.3.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "jquery-1.8.3.min.js"; path = "js/jquery-1.8.3.min.js"; sourceTree = "<group>"; };
+		B4D44C8C1AA1A65B005A7DED /* video.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = video.js; path = js/video.js; sourceTree = "<group>"; };
 		B4D44C8E1AA1A65B005A7DED /* sample.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = sample.mp4; sourceTree = "<group>"; };
 		B4D44C8F1AA1A65B005A7DED /* test.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.mp4; sourceTree = "<group>"; };
 		B4D44C901AA1A65B005A7DED /* test1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test1.mp4; sourceTree = "<group>"; };
@@ -55,7 +54,6 @@
 		C44E961D1A98C40D006E420F /* videocutupTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = videocutupTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C44E96221A98C40D006E420F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C44E96231A98C40D006E420F /* videocutupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = videocutupTests.swift; sourceTree = "<group>"; };
-		C44E962F1A996E62006E420F /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +79,9 @@
 			children = (
 				B4D44C871AA1A65B005A7DED /* css */,
 				B4D44C891AA1A65B005A7DED /* index.html */,
+				B4D44C881AA1A65B005A7DED /* test.css */,
+				B4D44C8B1AA1A65B005A7DED /* jquery-1.8.3.min.js */,
+				B4D44C8C1AA1A65B005A7DED /* video.js */,
 				B4D44C8A1AA1A65B005A7DED /* js */,
 				B4D44C8D1AA1A65B005A7DED /* movie */,
 			);
@@ -90,7 +91,6 @@
 		B4D44C871AA1A65B005A7DED /* css */ = {
 			isa = PBXGroup;
 			children = (
-				B4D44C881AA1A65B005A7DED /* test.css */,
 			);
 			path = css;
 			sourceTree = "<group>";
@@ -98,8 +98,6 @@
 		B4D44C8A1AA1A65B005A7DED /* js */ = {
 			isa = PBXGroup;
 			children = (
-				B4D44C8B1AA1A65B005A7DED /* jquery-1.8.3.min.js */,
-				B4D44C8C1AA1A65B005A7DED /* video.js */,
 			);
 			path = js;
 			sourceTree = "<group>";
@@ -142,7 +140,6 @@
 				C44E96111A98C40D006E420F /* Main.storyboard */,
 				C44E96141A98C40D006E420F /* Images.xcassets */,
 				C44E96161A98C40D006E420F /* LaunchScreen.xib */,
-				C44E962F1A996E62006E420F /* index.html */,
 				B4D44C861AA1A65B005A7DED /* htdocs */,
 				C44E960B1A98C40D006E420F /* Supporting Files */,
 			);
@@ -254,7 +251,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C44E96301A996E62006E420F /* index.html in Resources */,
 				B4D44C971AA1A65B005A7DED /* sample.mp4 in Resources */,
 				B4D44C931AA1A65B005A7DED /* test.css in Resources */,
 				B4D44C981AA1A65B005A7DED /* test.mp4 in Resources */,
