@@ -63,21 +63,21 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigat
     }
 
 }
-
-
-// レイヤーをAVPlayerLayerにする為のラッパークラス.
-class AVPlayerView : UIView{
-    
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    override class func layerClass() -> AnyClass{
-        return AVPlayerLayer.self
-    }
-    
-}
+//
+//
+//// レイヤーをAVPlayerLayerにする為のラッパークラス.
+//class AVPlayerView : UIView{
+//    
+//    required init(coder aDecoder: NSCoder) {
+//        super.init(coder: aDecoder)
+//    }
+//    
+//    override init(frame: CGRect) {
+//        super.init(frame: frame)
+//    }
+//    
+//    override class func layerClass() -> AnyClass{
+//        return AVPlayerLayer.self
+//    }
+//    
+//}

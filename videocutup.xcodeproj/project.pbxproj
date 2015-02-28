@@ -77,29 +77,13 @@
 		B4D44C861AA1A65B005A7DED /* htdocs */ = {
 			isa = PBXGroup;
 			children = (
-				B4D44C871AA1A65B005A7DED /* css */,
 				B4D44C891AA1A65B005A7DED /* index.html */,
 				B4D44C881AA1A65B005A7DED /* test.css */,
 				B4D44C8B1AA1A65B005A7DED /* jquery-1.8.3.min.js */,
 				B4D44C8C1AA1A65B005A7DED /* video.js */,
-				B4D44C8A1AA1A65B005A7DED /* js */,
 				B4D44C8D1AA1A65B005A7DED /* movie */,
 			);
 			path = htdocs;
-			sourceTree = "<group>";
-		};
-		B4D44C871AA1A65B005A7DED /* css */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = css;
-			sourceTree = "<group>";
-		};
-		B4D44C8A1AA1A65B005A7DED /* js */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = js;
 			sourceTree = "<group>";
 		};
 		B4D44C8D1AA1A65B005A7DED /* movie */ = {
