@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B4D44C931AA1A65B005A7DED /* test.css in Resources */ = {isa = PBXBuildFile; fileRef = B4D44C881AA1A65B005A7DED /* test.css */; };
+		B4D44C931AA1A65B005A7DED /* common.css in Resources */ = {isa = PBXBuildFile; fileRef = B4D44C881AA1A65B005A7DED /* common.css */; };
 		B4D44C941AA1A65B005A7DED /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = B4D44C891AA1A65B005A7DED /* index.html */; };
 		B4D44C951AA1A65B005A7DED /* jquery-1.8.3.min.js in Resources */ = {isa = PBXBuildFile; fileRef = B4D44C8B1AA1A65B005A7DED /* jquery-1.8.3.min.js */; };
 		B4D44C961AA1A65B005A7DED /* video.js in Resources */ = {isa = PBXBuildFile; fileRef = B4D44C8C1AA1A65B005A7DED /* video.js */; };
@@ -35,7 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B4D44C881AA1A65B005A7DED /* test.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = test.css; path = css/test.css; sourceTree = "<group>"; };
+		B4D44C881AA1A65B005A7DED /* common.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = common.css; path = css/common.css; sourceTree = "<group>"; };
 		B4D44C891AA1A65B005A7DED /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		B4D44C8B1AA1A65B005A7DED /* jquery-1.8.3.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "jquery-1.8.3.min.js"; path = "js/jquery-1.8.3.min.js"; sourceTree = "<group>"; };
 		B4D44C8C1AA1A65B005A7DED /* video.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = video.js; path = js/video.js; sourceTree = "<group>"; };
@@ -78,7 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				B4D44C891AA1A65B005A7DED /* index.html */,
-				B4D44C881AA1A65B005A7DED /* test.css */,
+				B4D44C881AA1A65B005A7DED /* common.css */,
 				B4D44C8B1AA1A65B005A7DED /* jquery-1.8.3.min.js */,
 				B4D44C8C1AA1A65B005A7DED /* video.js */,
 				B4D44C8D1AA1A65B005A7DED /* movie */,
@@ -89,8 +89,8 @@
 		B4D44C8D1AA1A65B005A7DED /* movie */ = {
 			isa = PBXGroup;
 			children = (
-				B4D44C8E1AA1A65B005A7DED /* sample.mp4 */,
 				B4D44C8F1AA1A65B005A7DED /* test.mp4 */,
+				B4D44C8E1AA1A65B005A7DED /* sample.mp4 */,
 				B4D44C901AA1A65B005A7DED /* test1.mp4 */,
 				B4D44C911AA1A65B005A7DED /* test2323.mp4 */,
 				B4D44C921AA1A65B005A7DED /* testwww.mp4 */,
@@ -236,7 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4D44C971AA1A65B005A7DED /* sample.mp4 in Resources */,
-				B4D44C931AA1A65B005A7DED /* test.css in Resources */,
+				B4D44C931AA1A65B005A7DED /* common.css in Resources */,
 				B4D44C981AA1A65B005A7DED /* test.mp4 in Resources */,
 				B4D44C961AA1A65B005A7DED /* video.js in Resources */,
 				B4D44C9A1AA1A65B005A7DED /* test2323.mp4 in Resources */,

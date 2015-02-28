@@ -55,6 +55,7 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigat
     func loadAddressURL() {
         let requestURL = NSURL(string: targetURL!)
         let req = NSURLRequest(URL: requestURL!)
+        self.webView.allowsInlineMediaPlayback = true;
         webView.loadRequest(req)
     }
     

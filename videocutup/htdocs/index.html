@@ -16,27 +16,32 @@
 <link href="test.css" rel="stylesheet">
 </head>
 
+
 <body>
-<video controls="controls"  width="100%" height="" autoplay loop webkit-playsinline="webkit-playsinline" <source id="video" src=""> </video>
-
-<div id="clip-play">
-  <div>
-    <div class="capture-output"></div><br>
-    <button onclick="clipPlay(this);">no clip</button>
-  </div>
-  <div>
-    <div class="capture-output"></div><br>
-    <button onclick="clipPlay(this);">no clip</button>
-  </div>
-  <div>
-    <div class="capture-output"></div><br>
-    <button onclick="clipPlay(this);">no clip</button>
-  </div>
-</div>
-
-<div id="clip-record">
-  <button>clip record</button>
-</div>
-
+    <video id="video" src="" width="100%" height="" autoplay loop webkit-playsinline>
+    </video>
+    
+    <div id="clip-play">
+        <div class="box">
+            <div class="capture-output"></div><br>
+            <button onclick="clipPlay(this);">no clip</button><br><br>
+            <a href="javascript:void(0)" onclick="clipDelete(this); return false;">delete this</a>
+        </div>
+        <div class="box">
+            <div class="capture-output"></div><br>
+            <button onclick="clipPlay(this);">no clip</button><br><br>
+            <a href="javascript:void(0)" onclick="clipDelete(this); return false;">delete this</a>
+        </div>
+        <div class="box">
+            <div class="capture-output"></div><br>
+            <button onclick="clipPlay(this);">no clip</button><br><br>
+            <a href="javascript:void(0)" onclick="clipDelete(this); return false;">delete this</a>
+        </div>
+    </div>
+    
+    <div id="clip-record">
+        <button>clip record</button>
+    </div>
+    
 </body>
 </html>
