@@ -12,8 +12,8 @@ $(function(){
   window.clipPlayEndFlag = "first";
   window.clipInterval = [];
   
-  $("#clip-record button").mousedown(
-    function(){
+  $("#clip-record button").bind('touchstart'
+    , function () {
       if (window.clipCount < 3) {
       clipRecord.push(window.video.currentTime);
       $(this).html("now recording...");
@@ -22,8 +22,8 @@ $(function(){
       return false;
     }
   }
-).mouseup(
-  function(){
+).bind('touchend'
+  , function () {
     if (window.clipCount < 3) {
         captureImage(window.clipCount);
           
