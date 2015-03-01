@@ -25,12 +25,11 @@ body {
   width:100%;
   margin:0 auto 5px;
   overflow:hidden;
-  min-height:80px;
+  min-height:15%;
 }
 #clip-play div canvas {
   margin:0 auto;
-  overflow:hidden;
-  max-height:70px;
+  max-height:90%;
 }
 
 #clip-play button {
