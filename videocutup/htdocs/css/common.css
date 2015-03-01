@@ -19,21 +19,36 @@ body {
   overflow: hidden;
   text-align: center;
 }
-#clip-play div {
+#clip-play .box {
   width:32%;
   float: left;
   margin:10px 2% 0 0;
+  text-align:center;
 }
-#clip-play div:last-child {
+#clip-play .box:last-child {
   margin:10px 0 0;
 }
-#clip-play div .capture-output {
+#clip-play .box .capture-output {
   width:100%;
   margin:0 auto 5px;
   overflow:hidden;
   min-height:15%;
+  position:relative;
 }
-#clip-play div canvas {
+#clip-play .box .capture-time {
+  width:100%;
+  height:20%;
+  color:#fff;
+  font-size:80%;
+  background-color: rgba(51,51,51,0.6);
+  position:absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+#clip-play .box canvas {
   margin:0 auto;
   max-height:90%;
 }
