@@ -1,4 +1,17 @@
+/*
+ ** 動画の長さ取得
+ */
+$(window).load(function () {
+  window.duration = window.video.duration;
+});
+
+
+/*
+ ** 初期設定
+ */
 $(function(){
+  window.duration = 0;
+  window.sequence = 0;
   window.clipCount = 0;
   window.clipPlayCount = 0;
   window.clipRecord = [];
@@ -11,7 +24,23 @@ $(function(){
   window.lastClipTapTime = "";
   window.clipPlayEndFlag = "first";
   window.clipInterval = [];
-  
+
+  setInterval(
+    function () {
+      window.sequence = window.sequence + 0.01; 
+
+      if (window.sequence > window.duration) {
+        window.sequence = 0;
+      }
+    }
+  , 10);
+});
+
+
+/*
+ ** クリップ登録
+ */
+$(function(){
   $("#clip-record button").bind('touchstart'
     , function () {
       if (window.clipCount < 3) {
@@ -52,42 +81,10 @@ $(function(){
   }
 });
 
-var clipPlay = function (t) {
-  var index = $("#clip-play button").index(t);
-  
-  clearInterval(window.clipInterval);
-  
-  window.clipPlayCount = window.clipPlayCount + 1;
-  
-  
-  if (clipPlayEndFlag == "first") {
-    clipTapTime[index].push(window.video.currentTime);
-  }
-  
-  else if (clipPlayEndFlag === "false") {
-    clipTapTime[index].push(window.lastClipTapTime);
-  }
-  
-  else if (clipPlayEndFlag === "true") {
-    clipTapTime[index].push(window.video.currentTime);
-  }
-  
-  window.clipPlayEndFlag = "false";
-  window.video.currentTime = clipRecords[index][0];
-  
-  window.lastClipTapTime = clipTapTime[index][clipTapTime[index].length - 1];
-  
-  window.clipInterval = setInterval(
-    function () {
-      if (window.video.currentTime > clipRecords[index][1]) {
-        window.clipPlayEndFlag = "true";
-        window.video.currentTime = lastClipTapTime;
-        clearInterval(window.clipInterval);
-      }
-    }, 1
-  );
-};
 
+/*
+ ** クリップ登録時のイメージ取得
+ */
 var captureImage = function (index) {
   var video  = document.getElementById('video')
     , output = $('.capture-output div')
@@ -120,6 +117,56 @@ var captureImage = function (index) {
     );
 };
 
+
+/*
+ ** クリップの再生
+ */
+var clipPlay = function (t) {
+  var index = $("#clip-play button").index(t);
+  
+  clearInterval(window.clipInterval);
+  
+  window.clipPlayCount = window.clipPlayCount + 1;
+  
+  if (clipPlayEndFlag == "first") {
+    clipTapTime[index].push(window.sequence);
+  }
+  
+  else if (clipPlayEndFlag === "false") {
+    return false;
+    //clipTapTime[index].push(window.lastClipTapTime);
+  }
+  
+  else if (clipPlayEndFlag === "true") {
+    clipTapTime[index].push(window.sequence);
+  }
+  
+  window.clipPlayEndFlag = "false";
+  window.video.currentTime = clipRecords[index][0];
+  
+  window.lastClipTapTime = clipTapTime[index][clipTapTime[index].length - 1];
+
+  window.duration = window.duration + (clipRecords[index][1] - clipRecords[index][0]);
+  
+  clipPlayToEnd(index);
+};
+
+var clipPlayToEnd = function (num) {
+  window.clipInterval = setInterval(
+    function () {
+      if (window.video.currentTime > clipRecords[num][1]) {
+        window.clipPlayEndFlag = "true";
+        window.video.currentTime = lastClipTapTime;
+        clearInterval(window.clipInterval);
+      }
+    }, 1
+  );
+}
+
+
+/*
+ ** クリップの削除
+ */
 var clipDelete = function (t) {
   var division = $("#clip-play .box")
     , index = $("#clip-play a").index(t)
@@ -137,3 +184,29 @@ var clipDelete = function (t) {
 
   window.clipCount = window.clipCount - 1;
 };
+
+
+/*
+ ** 登録クリップの再生
+ */
+$(function(){
+  setInterval(
+    function () {
+      if ($.inArray(window.sequence, clipTapTime[0]) !== -1) {
+        window.video.currentTime = clipRecords[0][0];
+        clipPlayToEnd(0);
+      }
+
+      if ($.inArray(window.sequence, clipTapTime[1]) !== -1) {
+        window.video.currentTime = clipRecords[1][0];
+        clipPlayToEnd(1);
+      }
+
+      if ($.inArray(window.sequence, clipTapTime[2]) !== -1) {
+        window.video.currentTime = clipRecords[2][0];
+        clipPlayToEnd(2);
+      }
+    }
+  , 1);
+});
+
