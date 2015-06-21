@@ -1,0 +1,57 @@
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+        <script src="jquery-1.8.3.min.js" type="text/javascript"></script>
+        <script src="video.js"></script>
+        
+        <script>
+            var callFromSwift = function(url) {
+                var video = document.getElementById("video");
+                video.src = url;
+                video.play();
+                alert("test");
+                $('body').show();
+            }
+        </script>
+</head>
+
+
+<body>
+    12345678901234567890
+    <video id="video" src="" autoplay loop webkit-playsinline>
+    </video>
+    
+    <div id="clip-play">
+        <div class="box">
+            <div class="capture-output">
+                <div></div>
+                <span class="capture-time"></span>
+            </div>
+            <button onTouchStart="clipPlay(this);">no clip</button><br><br>
+            <a href="javascript:void(0)" onTouchStart="clipDelete(this); return false;">delete this</a>
+        </div>
+        <div class="box">
+            <div class="capture-output">
+                <div></div>
+                <span class="capture-time"></span>
+            </div>
+            <button onTouchStart="clipPlay(this);">no clip</button><br><br>
+            <a href="javascript:void(0)" onTouchStart="clipDelete(this); return false;">delete this</a>
+        </div>
+        <div class="box">
+            <div class="capture-output">
+                <div></div>
+                <span class="capture-time"></span>
+            </div>
+            <button onTouchStart="clipPlay(this);">no clip</button><br><br>
+            <a href="javascript:void(0)" onTouchStart="clipDelete(this); return false;">delete this</a>
+        </div>
+    </div>
+    
+    <div id="clip-record">
+        <button>clip record</button>
+    </div>
+    
+</body>
+</html>

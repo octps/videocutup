@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8121.17" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.14"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="video" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wiz-fC-YxA">
+                                <rect key="frame" x="20" y="50" width="560" height="500"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="500" id="RRV-fs-ci5"/>
+                                </constraints>
+                            </webView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ecP-y0-9xA">
+                                <rect key="frame" x="528" y="560" width="42" height="30"/>
+                                <state key="normal" title="select"/>
+                                <connections>
+                                    <action selector="selectMovie:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PxA-T9-5MT"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="wiz-fC-YxA" secondAttribute="trailing" id="2Oh-fO-0aP"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ecP-y0-9xA" secondAttribute="bottom" constant="10" id="3E8-zr-7YM"/>
+                            <constraint firstItem="wiz-fC-YxA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Hzs-4q-rcz"/>
+                            <constraint firstItem="wiz-fC-YxA" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="LfL-5O-ME7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ecP-y0-9xA" secondAttribute="trailing" constant="10" id="g40-NK-jtp"/>
+                            <constraint firstItem="wiz-fC-YxA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="v4q-gQ-rJO"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="wiz-fC-YxA" id="DUL-dP-BZW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
