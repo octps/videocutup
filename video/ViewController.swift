@@ -12,7 +12,7 @@ import CoreMedia
 import ImageIO
 import MobileCoreServices
 
-class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+class ViewController: UIViewController,UINavigationControllerDelegate,UIImagePickerControllerDelegate {
 
     var playerItem : AVPlayerItem!
     var videoPlayer : AVPlayer!
@@ -40,7 +40,7 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigat
     }
 
     // カメラロールから選択後、選択した動画のurlを動画表示メソッドに渡す
-    func imagePickerController(picker: UIImagePickerController!, _didFinishPickingMediaWithInfo info: NSDictionary!) {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         let url = info[UIImagePickerControllerMediaURL] as! NSURL!
 //        var pickedURL:NSURL = info[UIImagePickerControllerReferenceURL] as! NSURL
         self.dismissViewControllerAnimated(true, completion: nil)
