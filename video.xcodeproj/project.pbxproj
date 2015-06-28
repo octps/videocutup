@@ -197,6 +197,7 @@
 				TargetAttributes = {
 					AB17F7741B344A9200617FF5 = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = 7KHX4YH379;
 					};
 					AB17F7881B344A9200617FF5 = {
 						CreatedOnToolsVersion = 7.0;
@@ -406,11 +407,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = video/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = screenof.blue.video;
+				PRODUCT_BUNDLE_IDENTIFIER = screenof.blue;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -418,11 +422,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = video/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = screenof.blue.video;
+				PRODUCT_BUNDLE_IDENTIFIER = screenof.blue;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -493,6 +500,7 @@
 				AB17F79F1B344A9300617FF5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AB17F7A01B344A9300617FF5 /* Build configuration list for PBXNativeTarget "videoTests" */ = {
 			isa = XCConfigurationList;
@@ -501,6 +509,7 @@
 				AB17F7A21B344A9300617FF5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AB17F7A31B344A9300617FF5 /* Build configuration list for PBXNativeTarget "videoUITests" */ = {
 			isa = XCConfigurationList;
@@ -509,6 +518,7 @@
 				AB17F7A51B344A9300617FF5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

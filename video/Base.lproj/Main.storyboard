@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8121.17" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8121.20" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.16"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -19,29 +19,60 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wiz-fC-YxA">
-                                <rect key="frame" x="20" y="50" width="560" height="500"/>
+                                <rect key="frame" x="20" y="30" width="560" height="540"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="500" id="RRV-fs-ci5"/>
-                                </constraints>
                             </webView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ecP-y0-9xA">
-                                <rect key="frame" x="528" y="560" width="42" height="30"/>
+                                <rect key="frame" x="528" y="565" width="42" height="30"/>
                                 <state key="normal" title="select"/>
                                 <connections>
                                     <action selector="selectMovie:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PxA-T9-5MT"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dbJ-wa-rr1">
+                                <rect key="frame" x="30" y="565" width="51" height="30"/>
+                                <state key="normal" title="camera"/>
+                                <connections>
+                                    <action selector="doCamera:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XTY-Cy-SKt"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VUk-so-ZA0">
+                                <rect key="frame" x="101" y="565" width="53" height="30"/>
+                                <state key="normal" title="records"/>
+                                <connections>
+                                    <action selector="record:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RPg-iN-hCm"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oab-Ke-lL6">
+                                <rect key="frame" x="174" y="565" width="31" height="30"/>
+                                <state key="normal" title="stop"/>
+                                <connections>
+                                    <action selector="stop:" destination="BYZ-38-t0r" eventType="touchUpInside" id="h5v-3C-5L0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="VUk-so-ZA0" secondAttribute="bottom" constant="5" id="13M-FV-e1b"/>
                             <constraint firstAttribute="trailingMargin" secondItem="wiz-fC-YxA" secondAttribute="trailing" id="2Oh-fO-0aP"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ecP-y0-9xA" secondAttribute="bottom" constant="10" id="3E8-zr-7YM"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ecP-y0-9xA" secondAttribute="bottom" constant="5" id="3E8-zr-7YM"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="VUk-so-ZA0" secondAttribute="bottom" constant="570" id="C5Q-aU-W8a"/>
                             <constraint firstItem="wiz-fC-YxA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Hzs-4q-rcz"/>
                             <constraint firstItem="wiz-fC-YxA" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="LfL-5O-ME7"/>
+                            <constraint firstItem="oab-Ke-lL6" firstAttribute="leading" secondItem="VUk-so-ZA0" secondAttribute="trailing" constant="20" id="Os4-Zv-Lia"/>
+                            <constraint firstItem="VUk-so-ZA0" firstAttribute="leading" secondItem="dbJ-wa-rr1" secondAttribute="trailing" constant="20" id="ZSX-v9-DV5"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ecP-y0-9xA" secondAttribute="trailing" constant="10" id="g40-NK-jtp"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="dbJ-wa-rr1" secondAttribute="bottom" constant="5" id="hO6-Un-BFj"/>
                             <constraint firstItem="wiz-fC-YxA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="v4q-gQ-rJO"/>
+                            <constraint firstItem="dbJ-wa-rr1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="xg4-1f-LwQ"/>
+                            <constraint firstItem="wiz-fC-YxA" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="yZY-ER-hnj"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="oab-Ke-lL6" secondAttribute="bottom" constant="5" id="ysU-zL-r38"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="C5Q-aU-W8a"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="webView" destination="wiz-fC-YxA" id="DUL-dP-BZW"/>
