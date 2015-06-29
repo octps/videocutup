@@ -26,6 +26,7 @@ class ViewController: UIViewController,UINavigationControllerDelegate,UIImagePic
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        startCamera()
         
         /* webviewの読み込み */
         loadAddressURL()
@@ -34,7 +35,13 @@ class ViewController: UIViewController,UINavigationControllerDelegate,UIImagePic
     
     
     @IBAction func doCamera(sender: AnyObject) {
-        startCamera()
+//        startCamera()
+//        カメラshow
+            showCamera()
+    }
+    
+    func showCamera(){
+        previewLayer?.hidden = false
     }
     
     func startCamera() {
@@ -86,7 +93,9 @@ class ViewController: UIViewController,UINavigationControllerDelegate,UIImagePic
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         self.view.layer.addSublayer(previewLayer!)
         previewLayer?.frame = CGRectMake(10, 20, 300, 300)
+        previewLayer?.hidden = true  // カメラの表示を隠す
         captureSession.startRunning()
+        
     }
     
     
