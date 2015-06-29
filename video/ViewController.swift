@@ -86,6 +86,15 @@ class ViewController: UIViewController,UINavigationControllerDelegate,UIImagePic
             print(err)
         }
         
+        let audioCaptureDevice = AVCaptureDevice.devicesWithMediaType(AVMediaTypeAudio)
+        do {
+            let audioInput = try AVCaptureDeviceInput(device: audioCaptureDevice[0] as! AVCaptureDevice)  as AVCaptureInput
+            captureSession.addInput(audioInput)
+        } catch {
+            print(err)
+        }
+
+        
         if err != nil {
             print("エラー: \(err?.localizedDescription)")
         }
