@@ -24,6 +24,8 @@ $(function(){
   window.lastClipTapTime = "";
   window.clipPlayEndFlag = "first";
   window.clipInterval = [];
+  window.playFlag = 0;
+  window.playRepeatFlag = 0;
 
   setInterval(
     function () {
@@ -129,7 +131,7 @@ var clipPlay = function (t) {
   window.clipPlayCount = window.clipPlayCount + 1;
   
   if (clipPlayEndFlag == "first") {
-    clipTapTime[index].push(window.sequence);
+    clipTapTime[index].push(Math.round(window.sequence * 100) / 100);
   }
   
   else if (clipPlayEndFlag === "false") {
@@ -138,7 +140,7 @@ var clipPlay = function (t) {
   }
   
   else if (clipPlayEndFlag === "true") {
-    clipTapTime[index].push(window.sequence);
+    clipTapTime[index].push(Math.round(window.sequence * 100) / 100);
   }
   
   window.clipPlayEndFlag = "false";
@@ -147,6 +149,11 @@ var clipPlay = function (t) {
   window.lastClipTapTime = clipTapTime[index][clipTapTime[index].length - 1];
 
   window.duration = window.duration + (clipRecords[index][1] - clipRecords[index][0]);
+
+  console.log(clipRecords);
+  console.log(clipTapTime);
+
+  window.playFlag = 1;
   
   clipPlayToEnd(index);
 };
@@ -157,6 +164,7 @@ var clipPlayToEnd = function (num) {
       if (window.video.currentTime > clipRecords[num][1]) {
         window.clipPlayEndFlag = "true";
         window.video.currentTime = lastClipTapTime;
+        window.playFlag = 0;
         clearInterval(window.clipInterval);
       }
     }, 1
@@ -192,21 +200,43 @@ var clipDelete = function (t) {
 $(function(){
   setInterval(
     function () {
-      if ($.inArray(window.sequence, clipTapTime[0]) !== -1) {
-        window.video.currentTime = clipRecords[0][0];
-        clipPlayToEnd(0);
+      if (window.playFlag == 0 && $.inArray(Math.round(window.sequence * 100) / 100, clipTapTime[0]) !== -1) {
+        var cnum = $.inArray(Math.round(window.sequence * 100) / 100, clipTapTime[0]);
+
+        window.video.currentTime = clipRecords[0][cnum];
+        window.playRepeatFlag = 1;
+        PlayToEnd(0, cnum);
       }
 
-      if ($.inArray(window.sequence, clipTapTime[1]) !== -1) {
-        window.video.currentTime = clipRecords[1][0];
-        clipPlayToEnd(1);
+      if (window.playFlag == 0 && $.inArray(Math.round(window.sequence * 100) / 100, clipTapTime[1]) !== -1) {
+        var cnum = $.inArray(Math.round(window.sequence * 100) / 100, clipTapTime[1]);
+
+        window.video.currentTime = clipRecords[1][cnum];
+        window.playRepeatFlag = 1;
+        PlayToEnd(1, cnum);
       }
 
-      if ($.inArray(window.sequence, clipTapTime[2]) !== -1) {
-        window.video.currentTime = clipRecords[2][0];
-        clipPlayToEnd(2);
+      if (window.playFlag == 0 && $.inArray(Math.round(window.sequence * 100) / 100, clipTapTime[2]) !== -1) {
+        var cnum = $.inArray(Math.round(window.sequence * 100) / 100, clipTapTime[2]);
+
+        window.video.currentTime = clipRecords[2][cnum];
+        window.playRepeatFlag = 1;
+        PlayToEnd(2, cnum);
       }
     }
   , 1);
 });
 
+
+var PlayToEnd = function (num, cnum) {
+  window.clipInterval = setInterval(
+    function () {
+      if (window.playRepeatFlag == 1 && window.video.currentTime > clipRecords[num][1]) {
+        window.clipPlayEndFlag = "true";
+        window.video.currentTime = clipTapTime[num][cnum];
+        window.playRepeatFlag = 0;
+        clearInterval(window.clipInterval);
+      }
+    }, 1
+  );
+}
