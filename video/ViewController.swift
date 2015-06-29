@@ -23,6 +23,7 @@ class ViewController: UIViewController,UINavigationControllerDelegate,UIImagePic
     let fileOutput = AVCaptureMovieFileOutput()
     var isRecording = false
     /* カメラ使用のための定義 */
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +37,6 @@ class ViewController: UIViewController,UINavigationControllerDelegate,UIImagePic
     
     @IBAction func doCamera(sender: AnyObject) {
 //        startCamera()
-//        カメラshow
             showCamera()
     }
     
@@ -74,7 +74,7 @@ class ViewController: UIViewController,UINavigationControllerDelegate,UIImagePic
             device.unlockForConfiguration()
         }
     }
-    
+
     //カメラ開始！
     func beginCamera() {
         configureDevice()
@@ -122,8 +122,8 @@ class ViewController: UIViewController,UINavigationControllerDelegate,UIImagePic
 
             isRecording = true
             
-            passToWebview(fileURL)
-            
+//            passToWebview(fileURL)
+
             //            self.changeButtonColor(self.startButton, color: UIColor.grayColor())
             //            self.changeButtonColor(self.stopButton, color: UIColor.redColor())
         }
@@ -135,13 +135,12 @@ class ViewController: UIViewController,UINavigationControllerDelegate,UIImagePic
     
     func stopRecordings(sender: UIButton){
         if isRecording {
-            print("stop")
+//            print("stop")
             fileOutput.stopRecording()
             
             isRecording = false
             
             previewLayer?.hidden = true
-            // todo カメラの削除
 
             //            self.changeButtonColor(self.startButton, color: UIColor.redColor())
             //            self.changeButtonColor(self.stopButton, color: UIColor.grayColor())
@@ -154,6 +153,7 @@ class ViewController: UIViewController,UINavigationControllerDelegate,UIImagePic
     func captureOutput(captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAtURL outputFileURL: NSURL!, fromConnections connections: [AnyObject]!, error: NSError!) {
         let assetsLib = ALAssetsLibrary()
         assetsLib.writeVideoAtPathToSavedPhotosAlbum(outputFileURL, completionBlock: nil)
+        passToWebview(outputFileURL)
     }
 
 /* */
@@ -188,7 +188,7 @@ class ViewController: UIViewController,UINavigationControllerDelegate,UIImagePic
     
     func passToWebview(url:NSURL) {
         let JSScript =  "callFromSwift('" + url.absoluteString + "')"
-//        print(JSScript)
+        print(JSScript)
         webView.stringByEvaluatingJavaScriptFromString(JSScript);
     }
 
