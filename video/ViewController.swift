@@ -101,7 +101,9 @@ class ViewController: UIViewController,UINavigationControllerDelegate,UIImagePic
         
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         self.view.layer.addSublayer(previewLayer!)
-        previewLayer?.frame = CGRectMake(10, 20, 300, 300)
+        let sereenWidth = self.view.bounds.width
+        let sereenHeight = (self.view.bounds.height) - 100
+        previewLayer?.frame = CGRectMake(0, 20, sereenWidth, sereenHeight)
         previewLayer?.hidden = true  // カメラの表示を隠す
         captureSession.startRunning()
         
