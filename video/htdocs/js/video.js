@@ -1,16 +1,11 @@
 /*
  ** 動画の長さ取得
  */
-$(window).load(function () {
-  window.duration = window.video.duration;
-});
 
-
-/*
- ** 初期設定
- */
-$(function(){
-  window.duration = 0;
+var defineVideo = function () {
+  $(window).load(function () {
+    window.duration = window.video.duration;
+  });
   window.sequence = 0;
   window.clipCount = 0;
   window.clipPlayCount = 0;
@@ -27,20 +22,61 @@ $(function(){
   window.playFlag = 0;
   window.playRepeatFlag = 0;
 
-  //window.video.onloadstart = function() {
-    setInterval(
-      function () {
-        window.sequence = window.sequence + 0.01; 
+  setInterval(
+    function () {
+      window.sequence = window.sequence + 0.01; 
   
-        console.log('s' + window.sequence);
-        console.log('v' + window.video.currentTime);
-        if (window.sequence > window.duration) {
-          window.sequence = 0;
-        }
+      //console.log('s' + window.sequence);
+      //console.log('v' + window.video.currentTime);
+      console.log('v' + window.duration);
+      if (window.sequence > window.duration) {
+        window.sequence = 0;
       }
-    , 10);
-  //};
-});
+    }
+  , 10);
+};
+
+//$(window).load(function () {
+//  window.duration = window.video.duration;
+//});
+//
+//
+///*
+// ** 初期設定
+// */
+//$(function(){
+//  window.duration = 0;
+//  window.sequence = 0;
+//  window.clipCount = 0;
+//  window.clipPlayCount = 0;
+//  window.clipRecord = [];
+//  window.clipRecords = [];
+//  window.clipTapTime = [
+//    [],
+//    [],
+//    []
+//  ];
+//  window.lastClipTapTime = "";
+//  window.clipPlayEndFlag = "first";
+//  window.clipInterval = [];
+//  window.playFlag = 0;
+//  window.playRepeatFlag = 0;
+//
+//  //window.video.onloadstart = function() {
+//    setInterval(
+//      function () {
+//        window.sequence = window.sequence + 0.01; 
+//  
+//        //console.log('s' + window.sequence);
+//        //console.log('v' + window.video.currentTime);
+//        console.log('v' + window.duration);
+//        if (window.sequence > window.duration) {
+//          window.sequence = 0;
+//        }
+//      }
+//    , 10);
+//  //};
+//});
 
 
 /*
