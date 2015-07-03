@@ -9,9 +9,12 @@
             var callFromSwift = function(url) {
                 var video = document.getElementById("video");
                 video.src = url;
-                video.play()
-                defineVideo();
-                $('body').show();
+                video.play();
+
+                setTimeout(function () {
+                    defineVideo();
+                    $('body').show();
+                }, 100);
             }
         </script>
 <link href="css/common.css" rel="stylesheet">

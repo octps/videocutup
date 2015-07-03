@@ -3,9 +3,9 @@
  */
 
 var defineVideo = function () {
-  $(window).load(function () {
-    window.duration = window.video.duration;
-  });
+  //window.video.play();
+
+  window.duration = window.video.duration;
   window.sequence = 0;
   window.clipCount = 0;
   window.clipPlayCount = 0;
