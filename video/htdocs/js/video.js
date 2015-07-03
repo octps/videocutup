@@ -27,15 +27,19 @@ $(function(){
   window.playFlag = 0;
   window.playRepeatFlag = 0;
 
-  setInterval(
-    function () {
-      window.sequence = window.sequence + 0.01; 
-
-      if (window.sequence > window.duration) {
-        window.sequence = 0;
+  //window.video.onloadstart = function() {
+    setInterval(
+      function () {
+        window.sequence = window.sequence + 0.01; 
+  
+        console.log('s' + window.sequence);
+        console.log('v' + window.video.currentTime);
+        if (window.sequence > window.duration) {
+          window.sequence = 0;
+        }
       }
-    }
-  , 10);
+    , 10);
+  //};
 });
 
 
@@ -46,7 +50,7 @@ $(function(){
   $("#clip-record button").bind('touchstart'
     , function () {
       if (window.clipCount < 3) {
-        clipRecord.push(window.video.currentTime);
+        clipRecord.push(window.sequence);
         $(this).html("now recording...");
       }
       else {
@@ -56,7 +60,7 @@ $(function(){
   ).bind('touchend'
     , function () {
       if (window.clipCount < 3) {
-        clipRecord.push(window.video.currentTime);
+        clipRecord.push(window.sequence);
 
         clipRecords[clipCount] = clipRecord;
         clipRecord = [];
