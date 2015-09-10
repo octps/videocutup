@@ -26,9 +26,9 @@ var defineVideo = function () {
     function () {
       window.sequence = window.sequence + 0.01; 
   
-      //console.log('s' + window.sequence);
-      //console.log('v' + window.video.currentTime);
-      console.log('v' + window.duration);
+      console.log('s' + window.sequence);
+      console.log('v' + window.video.currentTime);
+      //console.log('v' + window.duration);
       if (window.sequence > window.duration) {
         window.sequence = 0;
       }
